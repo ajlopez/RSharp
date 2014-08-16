@@ -20,5 +20,17 @@
             Assert.AreEqual(2, v[1]);
             Assert.AreEqual(3, v[2]);
         }
+
+        [TestMethod]
+        public void ToLines()
+        {
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+
+            var lines = v.ToLines();
+
+            Assert.IsNotNull(lines);
+            Assert.AreEqual(1, lines.Count);
+            Assert.AreEqual("[1] 1 2 3", lines[0]);
+        }
     }
 }

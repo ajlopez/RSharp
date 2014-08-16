@@ -23,5 +23,24 @@
                 return this.elements[index];
             }
         }
+
+        public IList<string> ToLines()
+        {
+            IList<string> lines = new List<string>();
+
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append("[1]");
+
+            foreach (var elem in this.elements)
+            {
+                builder.Append(" ");
+                builder.Append(elem.ToString());
+            }
+
+            lines.Add(builder.ToString());
+
+            return lines;
+        }
     }
 }
