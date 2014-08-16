@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Interpreter\Lexer.cs" />
+    <Compile Include="Interpreter\Parser.cs" />
     <Compile Include="Interpreter\Token.cs" />
     <Compile Include="Interpreter\TokenType.cs" />
     <Compile Include="Language\Vector.cs" />

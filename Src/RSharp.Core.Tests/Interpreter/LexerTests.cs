@@ -74,8 +74,8 @@
         private static void IsToken(Token token, TokenType type, string value)
         {
             Assert.IsNotNull(token);
-            Assert.AreEqual(token.Value, value);
-            Assert.AreEqual(token.Type, type);
+            Assert.AreEqual(value, token.Value);
+            Assert.AreEqual(type, token.Type);
         }
     }
 }
