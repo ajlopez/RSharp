@@ -71,6 +71,36 @@
             Assert.IsNull(lexer.NextToken());
         }
 
+        [TestMethod]
+        public void GetNewLine()
+        {
+            Lexer lexer = new Lexer("\n");
+
+            IsToken(lexer.NextToken(), TokenType.EndOfLine, "\n");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetCarriageReturnNewLine()
+        {
+            Lexer lexer = new Lexer("\r\n");
+
+            IsToken(lexer.NextToken(), TokenType.EndOfLine, "\r\n");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetCarriageReturn()
+        {
+            Lexer lexer = new Lexer("\r");
+
+            IsToken(lexer.NextToken(), TokenType.EndOfLine, "\r");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
         private static void IsToken(Token token, TokenType type, string value)
         {
             Assert.IsNotNull(token);

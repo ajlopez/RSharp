@@ -26,6 +26,30 @@
         }
 
         [TestMethod]
+        public void ParseIntegerExpressionWithEndOfLine()
+        {
+            var parser = new Parser("123\r\n");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, 123);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseIntegerExpressionSkippingEndOfLine()
+        {
+            var parser = new Parser("\r\n123");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, 123);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseNameExpression()
         {
             var parser = new Parser("foo");

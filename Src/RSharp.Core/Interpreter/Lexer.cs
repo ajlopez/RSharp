@@ -25,7 +25,7 @@
         {
             int ich = this.NextChar();
 
-            while (ich >= 0 && char.IsWhiteSpace((char)ich))
+            while (ich >= 0 && IsWhiteSpace((char)ich))
                 ich = this.NextChar();
 
             if (ich < 0)
@@ -38,6 +38,15 @@
 
             if (char.IsLetter(ch))
                 return this.NextName(ch);
+
+            if (ch == '\n')
+                return new Token(TokenType.EndOfLine, "\n");
+
+            if (ch == '\r')
+                if (this.TryNextChar('\n'))
+                    return new Token(TokenType.EndOfLine, "\r\n");
+                else
+                    return new Token(TokenType.EndOfLine, "\r");
 
             return new Token(TokenType.Delimiter, ch.ToString());
         }
@@ -81,6 +90,26 @@
         private void PushChar(int ich)
         {
             this.chars.Push(ich);
+        }
+
+        private bool TryNextChar(char ch)
+        {
+            int ich = this.NextChar();
+
+            if (ich >= 0 && (char)ich == ch)
+                return true;
+
+            this.PushChar(ich);
+
+            return false;
+        }
+
+        private static bool IsWhiteSpace(char ch)
+        {
+            if (ch == '\n' || ch == '\r')
+                return false;
+
+            return char.IsWhiteSpace(ch);
         }
     }
 }

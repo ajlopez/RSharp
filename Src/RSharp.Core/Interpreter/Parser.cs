@@ -55,6 +55,9 @@
         {
             var token = this.NextToken();
 
+            while (token != null && token.Type == TokenType.EndOfLine)
+                token = this.NextToken();
+
             if (token == null)
                 return null;
 
