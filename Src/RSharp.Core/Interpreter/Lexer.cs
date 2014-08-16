@@ -36,14 +36,10 @@
             if (char.IsDigit(ch))
                 return this.NextInteger(ch);
 
-            string name = ch.ToString();
+            if (char.IsLetter(ch))
+                return this.NextName(ch);
 
-            for (ich = this.NextChar(); ich >= 0 && !char.IsWhiteSpace((char)ich); ich = this.NextChar())
-                name += ((char)ich).ToString();
-
-            var token = new Token(TokenType.Name, name);
-
-            return token;
+            return new Token(TokenType.Delimiter, ch.ToString());
         }
 
         private Token NextInteger(char firstch)
@@ -58,6 +54,20 @@
             this.PushChar(ich);
 
             return new Token(TokenType.Integer, value);
+        }
+
+        private Token NextName(char firstch)
+        {
+            string value = firstch.ToString();
+
+            int ich;
+
+            for (ich = this.NextChar(); ich >= 0 && char.IsLetter((char)ich); ich = this.NextChar())
+                value += ((char)ich).ToString();
+
+            this.PushChar(ich);
+
+            return new Token(TokenType.Name, value);
         }
 
         private int NextChar()

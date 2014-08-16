@@ -17,7 +17,6 @@
 
             var token = lexer.NextToken();
 
-            Assert.IsNotNull(token);
             IsToken(token, TokenType.Name, "foo");
 
             Assert.IsNull(lexer.NextToken());
@@ -30,7 +29,6 @@
 
             var token = lexer.NextToken();
 
-            Assert.IsNotNull(token);
             IsToken(token, TokenType.Name, "foo");
 
             Assert.IsNull(lexer.NextToken());
@@ -43,7 +41,6 @@
 
             var token = lexer.NextToken();
 
-            Assert.IsNotNull(token);
             IsToken(token, TokenType.Integer, "42");
 
             Assert.IsNull(lexer.NextToken());
@@ -56,14 +53,27 @@
 
             var token = lexer.NextToken();
 
-            Assert.IsNotNull(token);
             IsToken(token, TokenType.Integer, "42");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetDelimiters()
+        {
+            Lexer lexer = new Lexer(",;()");
+
+            IsToken(lexer.NextToken(), TokenType.Delimiter, ",");
+            IsToken(lexer.NextToken(), TokenType.Delimiter, ";");
+            IsToken(lexer.NextToken(), TokenType.Delimiter, "(");
+            IsToken(lexer.NextToken(), TokenType.Delimiter, ")");
 
             Assert.IsNull(lexer.NextToken());
         }
 
         private static void IsToken(Token token, TokenType type, string value)
         {
+            Assert.IsNotNull(token);
             Assert.AreEqual(token.Value, value);
             Assert.AreEqual(token.Type, type);
         }
