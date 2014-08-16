@@ -23,10 +23,30 @@
             Assert.IsNull(parser.ParseExpression());
         }
 
-        private static void IsConstantExpression(ConstantExpression expr, object value)
+        [TestMethod]
+        public void ParseNameExpression()
+        {
+            var parser = new Parser("foo");
+
+            var expr = parser.ParseExpression();
+
+            IsNameExpression(expr, "foo");
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        private static void IsConstantExpression(IExpression expr, object value)
         {
             Assert.IsNotNull(expr);
-            Assert.AreEqual(value, expr.Value);
+            Assert.IsInstanceOfType(expr, typeof(ConstantExpression));
+            Assert.AreEqual(value, ((ConstantExpression)expr).Value);
+        }
+
+        private static void IsNameExpression(IExpression expr, string name)
+        {
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(NameExpression));
+            Assert.AreEqual(name, ((NameExpression)expr).Name);
         }
     }
 }

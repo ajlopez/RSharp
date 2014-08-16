@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class ConstantExpression
+    public class ConstantExpression : IExpression
     {
         private object value;
 

@@ -27,12 +27,15 @@
             this.lexer = lexer;
         }
 
-        public ConstantExpression ParseExpression()
+        public IExpression ParseExpression()
         {
             var token = this.NextToken();
 
             if (token == null)
                 return null;
+
+            if (token.Type == TokenType.Name)
+                return new NameExpression(token.Value);
 
             return new ConstantExpression(int.Parse(token.Value, CultureInfo.InvariantCulture));
         }
