@@ -4,5 +4,6 @@ R-like programming language interpreter, written in C#, WIP
 
 ## References
 
-TBD
+- [The R Project for Statistical Computing](http://www.r-project.org/)
+- [Code School - Try R](http://tryr.codeschool.com/)
 
