@@ -8,6 +8,7 @@
 
     public class Lexer
     {
+        private Stack<int> chars = new Stack<int>();
         private TextReader reader;
 
         public Lexer(string text)
@@ -30,7 +31,12 @@
             if (ich < 0)
                 return null;
 
-            string name = ((char)ich).ToString();
+            var ch = (char)ich;
+
+            if (char.IsDigit(ch))
+                return this.NextInteger(ch);
+
+            string name = ch.ToString();
 
             for (ich = this.NextChar(); ich >= 0 && !char.IsWhiteSpace((char)ich); ich = this.NextChar())
                 name += ((char)ich).ToString();
@@ -40,9 +46,31 @@
             return token;
         }
 
+        private Token NextInteger(char firstch)
+        {
+            string value = firstch.ToString();
+
+            int ich;
+
+            for (ich = this.NextChar(); ich >= 0 && char.IsDigit((char)ich); ich = this.NextChar())
+                value += ((char)ich).ToString();
+
+            this.PushChar(ich);
+
+            return new Token(TokenType.Integer, value);
+        }
+
         private int NextChar()
         {
+            if (this.chars.Count > 0)
+                return this.chars.Pop();
+
             return this.reader.Read();
+        }
+
+        private void PushChar(int ich)
+        {
+            this.chars.Push(ich);
         }
     }
 }
