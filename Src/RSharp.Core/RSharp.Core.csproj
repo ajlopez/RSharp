@@ -44,6 +44,7 @@
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
+    <Compile Include="Functions\MakeVector.cs" />
     <Compile Include="Interpreter\Lexer.cs" />
     <Compile Include="Interpreter\Parser.cs" />
     <Compile Include="Interpreter\Token.cs" />
