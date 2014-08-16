@@ -4,26 +4,45 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.IO;
 
     public class Lexer
     {
-        private string text;
+        private TextReader reader;
 
         public Lexer(string text)
+            : this(new StringReader(text))
         {
-            this.text = text;
+        }
+
+        public Lexer(TextReader reader)
+        {
+            this.reader = reader;
         }
 
         public Token NextToken()
         {
-            if (this.text == null)
+            int ich = this.NextChar();
+
+            while (ich >= 0 && char.IsWhiteSpace((char)ich))
+                ich = this.NextChar();
+
+            if (ich < 0)
                 return null;
 
-            var token = new Token(TokenType.Name, this.text.Trim());
+            string name = ((char)ich).ToString();
 
-            this.text = null;
+            for (ich = this.NextChar(); ich >= 0 && !char.IsWhiteSpace((char)ich); ich = this.NextChar())
+                name += ((char)ich).ToString();
+
+            var token = new Token(TokenType.Name, name);
 
             return token;
+        }
+
+        private int NextChar()
+        {
+            return this.reader.Read();
         }
     }
 }
