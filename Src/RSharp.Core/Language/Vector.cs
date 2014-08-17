@@ -46,12 +46,27 @@
 
         public object Add(object value)
         {
+            if (value is Vector)
+                return this.Add((Vector)value);
+
             var op = new AddOperation();
 
             IList<object> values = new List<object>();
 
             foreach (var element in this.elements)
                 values.Add(op.Apply(element, value));
+
+            return new Vector(values);
+        }
+
+        private Vector Add(Vector value)
+        {
+            var op = new AddOperation();
+
+            IList<object> values = new List<object>();
+
+            for (int k = 0; k < this.elements.Count; k++)
+                values.Add(op.Apply(this.elements[k], value.elements[k]));
 
             return new Vector(values);
         }
