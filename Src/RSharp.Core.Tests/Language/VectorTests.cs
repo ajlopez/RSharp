@@ -32,5 +32,23 @@
             Assert.AreEqual(1, lines.Count);
             Assert.AreEqual("[1] 1 2 3", lines[0]);
         }
+
+        [TestMethod]
+        public void AddInteger()
+        {
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+
+            var result = v.Add(1);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var v2 = (Vector)result;
+
+            Assert.AreEqual(3, v2.Length);
+            Assert.AreEqual(v2[0], 2);
+            Assert.AreEqual(v2[1], 3);
+            Assert.AreEqual(v2[2], 4);
+        }
     }
 }

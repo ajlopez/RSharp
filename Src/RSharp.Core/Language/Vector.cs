@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using RSharp.Core.Operations;
 
     public class Vector
     {
@@ -41,6 +42,18 @@
             lines.Add(builder.ToString());
 
             return lines;
+        }
+
+        public object Add(object value)
+        {
+            var op = new AddOperation();
+
+            IList<object> values = new List<object>();
+
+            foreach (var element in this.elements)
+                values.Add(op.Apply(element, value));
+
+            return new Vector(values);
         }
     }
 }
