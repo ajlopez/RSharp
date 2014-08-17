@@ -53,6 +53,7 @@
     <Compile Include="Interpreter\Token.cs" />
     <Compile Include="Interpreter\TokenType.cs" />
     <Compile Include="Language\Vector.cs" />
+    <Compile Include="Operations\AddOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

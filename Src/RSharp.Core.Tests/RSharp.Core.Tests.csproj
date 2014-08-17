@@ -51,6 +51,7 @@
     <Compile Include="Interpreter\LexerTests.cs" />
     <Compile Include="Interpreter\ParserTests.cs" />
     <Compile Include="Language\VectorTests.cs" />
+    <Compile Include="Operations\AddOperationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
