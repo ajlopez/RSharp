@@ -56,5 +56,21 @@
             Assert.AreEqual(2, vector[1]);
             Assert.AreEqual(3, vector[2]);
         }
+
+        [TestMethod]
+        public void EvaluateAddExpressionWithTwoIntegers()
+        {
+            Context context = new Context();
+
+            context.SetValue("one", 1);
+            context.SetValue("two", 2);
+
+            var expr = new AddExpression(new NameExpression("one"), new NameExpression("two"));
+
+            var result = expr.Evaluate(context);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3, result);
+        }
     }
 }
