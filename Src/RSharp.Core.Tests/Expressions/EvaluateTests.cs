@@ -72,5 +72,21 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result);
         }
+
+        [TestMethod]
+        public void EvaluateSubtractExpressionWithTwoIntegers()
+        {
+            Context context = new Context();
+
+            context.SetValue("one", 1);
+            context.SetValue("two", 2);
+
+            var expr = new SubtractExpression(new NameExpression("one"), new NameExpression("two"));
+
+            var result = expr.Evaluate(context);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(-1, result);
+        }
     }
 }

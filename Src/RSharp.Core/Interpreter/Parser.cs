@@ -35,8 +35,17 @@
             if (expr == null)
                 return null;
 
-            while (this.TryNextToken(TokenType.Operator, "+"))
-                expr = new AddExpression(expr, this.ParseTerm());
+            Token token;
+
+            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-"); token = this.NextToken())
+            {
+                if (token.Value == "+")
+                    expr = new AddExpression(expr, this.ParseTerm());
+                else
+                    expr = new SubtractExpression(expr, this.ParseTerm());
+            }
+
+            this.PushToken(token);
 
             return expr;
         }
