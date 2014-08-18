@@ -52,7 +52,7 @@
         }
 
         [TestMethod]
-        public void AddVector()
+        public void AddVectorSameLength()
         {
             Vector v = new Vector(new object[] { 1, 2, 3 });
             Vector v2 = new Vector(new object[] { 2, 4, 8 });
@@ -68,6 +68,46 @@
             Assert.AreEqual(3, v3[0]);
             Assert.AreEqual(6, v3[1]);
             Assert.AreEqual(11, v3[2]);
+        }
+
+        [TestMethod]
+        public void AddVectorWithShorterLength()
+        {
+            Vector v = new Vector(new object[] { 1, 2, 3, 4 });
+            Vector v2 = new Vector(new object[] { 2, 4 });
+
+            var result = v.Add(v2);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var v3 = (Vector)result;
+
+            Assert.AreEqual(4, v3.Length);
+            Assert.AreEqual(3, v3[0]);
+            Assert.AreEqual(6, v3[1]);
+            Assert.AreEqual(5, v3[2]);
+            Assert.AreEqual(8, v3[3]);
+        }
+
+        [TestMethod]
+        public void AddVectorWithLongerLength()
+        {
+            Vector v = new Vector(new object[] { 1, 2 });
+            Vector v2 = new Vector(new object[] { 2, 4, 8, 16 });
+
+            var result = v.Add(v2);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var v3 = (Vector)result;
+
+            Assert.AreEqual(4, v3.Length);
+            Assert.AreEqual(3, v3[0]);
+            Assert.AreEqual(6, v3[1]);
+            Assert.AreEqual(9, v3[2]);
+            Assert.AreEqual(18, v3[3]);
         }
     }
 }

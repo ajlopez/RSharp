@@ -65,8 +65,16 @@
 
             IList<object> values = new List<object>();
 
-            for (int k = 0; k < this.elements.Count; k++)
-                values.Add(op.Apply(this.elements[k], value.elements[k]));
+            int l1 = this.elements.Count;
+            int l2 = value.Length;
+            int l = Math.Max(l1, l2);
+
+            for (int k = 0; k < l; k++)
+            {
+                int k1 = k % l1;
+                int k2 = k % l2;
+                values.Add(op.Apply(this.elements[k1], value.elements[k2]));
+            }
 
             return new Vector(values);
         }
