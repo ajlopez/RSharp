@@ -99,6 +99,26 @@
         }
 
         [TestMethod]
+        public void AddVectorToVector()
+        {
+            AddOperation op = new AddOperation();
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+            Vector v2= new Vector(new object[] { 4, 5 });
+
+            var result = op.Apply(v, v2);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(5, vector[0]);
+            Assert.AreEqual(7, vector[1]);
+            Assert.AreEqual(7, vector[2]);
+        }
+
+        [TestMethod]
         public void SubtractNumbers()
         {
             SubtractOperation op = new SubtractOperation();
