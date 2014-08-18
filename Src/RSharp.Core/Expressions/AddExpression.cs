@@ -19,6 +19,10 @@
             this.oper = new AddOperation();
         }
 
+        public IExpression LeftExpression { get { return this.leftexpr; } }
+
+        public IExpression RightExpression { get { return this.rightexpr; } }
+
         public object Evaluate(Context context)
         {
             return this.oper.Apply(this.leftexpr.Evaluate(context), this.rightexpr.Evaluate(context));

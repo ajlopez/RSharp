@@ -35,6 +35,19 @@
             if (expr == null)
                 return null;
 
+            while (this.TryNextToken(TokenType.Operator, "+"))
+                expr = new AddExpression(expr, this.ParseTerm());
+
+            return expr;
+        }
+
+        private IExpression ParseTerm()
+        {
+            IExpression expr = this.ParseSimpleTerm();
+
+            if (expr == null)
+                return null;
+
             if (!this.TryNextToken(TokenType.Delimiter, "("))
                 return expr;
 
@@ -51,7 +64,7 @@
             return new CallExpression(expr, exprs);
         }
 
-        private IExpression ParseTerm()
+        private IExpression ParseSimpleTerm()
         {
             var token = this.NextToken();
 

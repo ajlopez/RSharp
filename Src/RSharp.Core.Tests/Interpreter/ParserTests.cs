@@ -62,6 +62,28 @@
         }
 
         [TestMethod]
+        public void ParseAddExpression()
+        {
+            var parser = new Parser("1+2");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(AddExpression));
+
+            var addexpr = (AddExpression)expr;
+
+            Assert.IsNotNull(addexpr.LeftExpression);
+            Assert.IsNotNull(addexpr.RightExpression);
+            Assert.IsInstanceOfType(addexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)addexpr.LeftExpression).Value);
+            Assert.IsInstanceOfType(addexpr.RightExpression, typeof(ConstantExpression));
+            Assert.AreEqual(2, ((ConstantExpression)addexpr.RightExpression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseAndEvaluateCallExpression()
         {
             var parser = new Parser("c(1,2,3)");

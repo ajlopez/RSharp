@@ -101,6 +101,16 @@
             Assert.IsNull(lexer.NextToken());
         }
 
+        [TestMethod]
+        public void GetPlus()
+        {
+            Lexer lexer = new Lexer("+");
+
+            IsToken(lexer.NextToken(), TokenType.Operator, "+");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
         private static void IsToken(Token token, TokenType type, string value)
         {
             Assert.IsNotNull(token);

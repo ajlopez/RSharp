@@ -9,6 +9,7 @@
     {
         Name,
         Integer,
+        Operator,
         Delimiter,
         EndOfLine
     }

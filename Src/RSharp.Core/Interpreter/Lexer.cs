@@ -39,6 +39,9 @@
             if (char.IsLetter(ch))
                 return this.NextName(ch);
 
+            if (ch == '+')
+                return new Token(TokenType.Operator, "+");
+
             if (ch == '\n')
                 return new Token(TokenType.EndOfLine, "\n");
 
