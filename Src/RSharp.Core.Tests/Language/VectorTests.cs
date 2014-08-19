@@ -127,5 +127,24 @@
             Assert.AreEqual(9, v3[2]);
             Assert.AreEqual(18, v3[3]);
         }
+
+        [TestMethod]
+        public void SubtractVectorsSameLength()
+        {
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+            Vector v2 = new Vector(new object[] { 2, 4, 8 });
+
+            var result = v.Subtract(v2);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var v3 = (Vector)result;
+
+            Assert.AreEqual(3, v3.Length);
+            Assert.AreEqual(-1, v3[0]);
+            Assert.AreEqual(-2, v3[1]);
+            Assert.AreEqual(-5, v3[2]);
+        }
     }
 }
