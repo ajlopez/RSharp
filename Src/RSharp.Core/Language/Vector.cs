@@ -74,6 +74,18 @@
             return new Vector(values);
         }
 
+        internal object SubtractFrom(object value)
+        {
+            var op = new SubtractOperation();
+
+            IList<object> values = new List<object>();
+
+            foreach (var element in this.elements)
+                values.Add(op.Apply(value, element));
+
+            return new Vector(values);
+        }
+
         private Vector Add(Vector value)
         {
             var op = new AddOperation();

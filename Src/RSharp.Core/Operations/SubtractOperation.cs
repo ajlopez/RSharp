@@ -13,13 +13,17 @@
             if (left is int)
                 if (right is int)
                     return (int)left - (int)right;
-                else
+                else if (right is double)
                     return (int)left - (double)right;
+                else
+                    return ((Vector)right).SubtractFrom(left);
             else if (left is double)
                 if (right is int)
                     return (double)left - (int)right;
-                else
+                else if (right is double)
                     return (double)left - (double)right;
+                else
+                    return ((Vector)right).SubtractFrom(left);
             else
                 return ((Vector)left).Subtract(right);
         }
