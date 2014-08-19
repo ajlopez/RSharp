@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using RSharp.Core.Language;
 
     public class SubtractOperation
     {
@@ -14,11 +15,13 @@
                     return (int)left - (int)right;
                 else
                     return (int)left - (double)right;
-            else
+            else if (left is double)
                 if (right is int)
                     return (double)left - (int)right;
                 else
                     return (double)left - (double)right;
+            else
+                return ((Vector)left).Subtract(right);
         }
     }
 }

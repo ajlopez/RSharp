@@ -128,5 +128,24 @@
             Assert.AreEqual(1 - 2.3, op.Apply(1, 2.3));
             Assert.AreEqual(1.2 - 3, op.Apply(1.2, 3));
         }
+
+        [TestMethod]
+        public void SubtractIntegerFromVector()
+        {
+            SubtractOperation op = new SubtractOperation();
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+
+            var result = op.Apply(v, 1);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(0, vector[0]);
+            Assert.AreEqual(1, vector[1]);
+            Assert.AreEqual(2, vector[2]);
+        }
     }
 }
