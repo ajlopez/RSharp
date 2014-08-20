@@ -16,14 +16,14 @@
                 else if (right is double)
                     return (int)left - (double)right;
                 else
-                    return ((Vector)right).SubtractFrom(left);
+                    return ((Vector)right).ApplyToRight(this, left);
             else if (left is double)
                 if (right is int)
                     return (double)left - (int)right;
                 else if (right is double)
                     return (double)left - (double)right;
                 else
-                    return ((Vector)right).SubtractFrom(left);
+                    return ((Vector)right).ApplyToRight(this, left);
             else
                 return ((Vector)left).Subtract(right);
         }

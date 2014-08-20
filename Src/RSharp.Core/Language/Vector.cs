@@ -8,6 +8,9 @@
 
     public class Vector
     {
+        private static AddOperation addop = new AddOperation();
+        private static SubtractOperation subop = new SubtractOperation();
+
         private IList<object> elements;
 
         public Vector(IEnumerable<object> elements)
@@ -47,25 +50,21 @@
         public object Add(object value)
         {
             if (value is Vector)
-                return this.Add((Vector)value);
+                return this.ApplyOperation(addop, (Vector)value);
 
-            var op = new AddOperation();
-
-            IList<object> values = new List<object>();
-
-            foreach (var element in this.elements)
-                values.Add(op.Apply(element, value));
-
-            return new Vector(values);
+            return this.ApplyToLeft(addop, value);
         }
 
         public object Subtract(object value)
         {
             if (value is Vector)
-                return this.Subtract((Vector)value);
+                return this.ApplyOperation(subop, (Vector)value);
 
-            var op = new SubtractOperation();
+            return this.ApplyToLeft(subop, value);
+        }
 
+        internal object ApplyToLeft(IBinaryOperation op, object value)
+        {
             IList<object> values = new List<object>();
 
             foreach (var element in this.elements)
@@ -74,10 +73,8 @@
             return new Vector(values);
         }
 
-        internal object SubtractFrom(object value)
+        internal object ApplyToRight(IBinaryOperation op, object value)
         {
-            var op = new SubtractOperation();
-
             IList<object> values = new List<object>();
 
             foreach (var element in this.elements)
@@ -86,30 +83,8 @@
             return new Vector(values);
         }
 
-        private Vector Add(Vector value)
+        private Vector ApplyOperation(IBinaryOperation op, Vector value)
         {
-            var op = new AddOperation();
-
-            IList<object> values = new List<object>();
-
-            int l1 = this.elements.Count;
-            int l2 = value.Length;
-            int l = Math.Max(l1, l2);
-
-            for (int k = 0; k < l; k++)
-            {
-                int k1 = k % l1;
-                int k2 = k % l2;
-                values.Add(op.Apply(this.elements[k1], value.elements[k2]));
-            }
-
-            return new Vector(values);
-        }
-
-        private Vector Subtract(Vector value)
-        {
-            var op = new SubtractOperation();
-
             IList<object> values = new List<object>();
 
             int l1 = this.elements.Count;
