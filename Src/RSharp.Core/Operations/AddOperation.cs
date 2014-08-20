@@ -6,7 +6,7 @@
     using System.Text;
     using RSharp.Core.Language;
 
-    public class AddOperation
+    public class AddOperation : IBinaryOperation
     {
         public object Apply(object left, object right)
         {

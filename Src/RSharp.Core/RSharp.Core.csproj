@@ -57,6 +57,7 @@
     <Compile Include="Language\Vector.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Operations\AddOperation.cs" />
+    <Compile Include="Operations\IBinaryOperation.cs" />
     <Compile Include="Operations\SubtractOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
