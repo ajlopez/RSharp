@@ -185,5 +185,112 @@
             Assert.AreEqual(-0.5, vector[1]);
             Assert.AreEqual(-1.5, vector[2]);
         }
+
+        [TestMethod]
+        public void MultiplyNumbers()
+        {
+            MultiplyOperation op = new MultiplyOperation();
+
+            Assert.AreEqual(3 * 2, op.Apply(3, 2));
+            Assert.AreEqual(1.2 * 3.4, op.Apply(1.2, 3.4));
+            Assert.AreEqual(4 * 2.3, op.Apply(4, 2.3));
+            Assert.AreEqual(1.2 * 3, op.Apply(1.2, 3));
+        }
+
+        [TestMethod]
+        public void MultiplyVectorToInteger()
+        {
+            MultiplyOperation op = new MultiplyOperation();
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+
+            var result = op.Apply(v, 2);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(2, vector[0]);
+            Assert.AreEqual(4, vector[1]);
+            Assert.AreEqual(6, vector[2]);
+        }
+
+        [TestMethod]
+        public void MultiplyIntegerToVector()
+        {
+            MultiplyOperation op = new MultiplyOperation();
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+
+            var result = op.Apply(3, v);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(3, vector[0]);
+            Assert.AreEqual(6, vector[1]);
+            Assert.AreEqual(9, vector[2]);
+        }
+
+        [TestMethod]
+        public void MultiplyVectorByReal()
+        {
+            MultiplyOperation op = new MultiplyOperation();
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+
+            var result = op.Apply(v, 1.5);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(1 * 1.5, vector[0]);
+            Assert.AreEqual(2 * 1.5, vector[1]);
+            Assert.AreEqual(3 * 1.5, vector[2]);
+        }
+
+        [TestMethod]
+        public void MultiplyRealByVector()
+        {
+            MultiplyOperation op = new MultiplyOperation();
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+
+            var result = op.Apply(1.5, v);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(1 * 1.5, vector[0]);
+            Assert.AreEqual(2 * 1.5, vector[1]);
+            Assert.AreEqual(3 * 1.5, vector[2]);
+        }
+
+        [TestMethod]
+        public void MultiplyVectorToVector()
+        {
+            MultiplyOperation op = new MultiplyOperation();
+            Vector v = new Vector(new object[] { 1, 2, 3 });
+            Vector v2 = new Vector(new object[] { 4, 5 });
+
+            var result = op.Apply(v, v2);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(4, vector[0]);
+            Assert.AreEqual(10, vector[1]);
+            Assert.AreEqual(12, vector[2]);
+        }
     }
 }

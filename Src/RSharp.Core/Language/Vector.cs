@@ -10,6 +10,7 @@
     {
         private static AddOperation addop = new AddOperation();
         private static SubtractOperation subop = new SubtractOperation();
+        private static MultiplyOperation multop = new MultiplyOperation();
 
         private IList<object> elements;
 
@@ -61,6 +62,14 @@
                 return this.ApplyOperation(subop, (Vector)value);
 
             return this.ApplyToLeft(subop, value);
+        }
+
+        public object Multiply(object value)
+        {
+            if (value is Vector)
+                return this.ApplyOperation(multop, (Vector)value);
+
+            return this.ApplyToLeft(multop, value);
         }
 
         internal object ApplyToLeft(IBinaryOperation op, object value)
