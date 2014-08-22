@@ -39,7 +39,7 @@
             if (char.IsLetter(ch))
                 return this.NextName(ch);
 
-            if (ch == '+' || ch == '-')
+            if (ch == '+' || ch == '-' || ch == '*')
                 return new Token(TokenType.Operator, ch.ToString());
 
             if (ch == '\n')

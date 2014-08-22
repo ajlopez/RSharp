@@ -37,12 +37,14 @@
 
             Token token;
 
-            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-"); token = this.NextToken())
+            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-" || token.Value == "*"); token = this.NextToken())
             {
                 if (token.Value == "+")
                     expr = new AddExpression(expr, this.ParseTerm());
-                else
+                else if (token.Value == "-")
                     expr = new SubtractExpression(expr, this.ParseTerm());
+                else
+                    expr = new MultiplyExpression(expr, this.ParseTerm());
             }
 
             this.PushToken(token);

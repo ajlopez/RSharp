@@ -106,6 +106,28 @@
         }
 
         [TestMethod]
+        public void ParseMultiplyExpression()
+        {
+            var parser = new Parser("2*3");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(MultiplyExpression));
+
+            var subexpr = (MultiplyExpression)expr;
+
+            Assert.IsNotNull(subexpr.LeftExpression);
+            Assert.IsNotNull(subexpr.RightExpression);
+            Assert.IsInstanceOfType(subexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.AreEqual(2, ((ConstantExpression)subexpr.LeftExpression).Value);
+            Assert.IsInstanceOfType(subexpr.RightExpression, typeof(ConstantExpression));
+            Assert.AreEqual(3, ((ConstantExpression)subexpr.RightExpression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseAndEvaluateCallExpression()
         {
             var parser = new Parser("c(1,2,3)");

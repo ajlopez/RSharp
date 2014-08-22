@@ -88,5 +88,21 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(-1, result);
         }
+
+        [TestMethod]
+        public void EvaluateMultiplyExpressionWithTwoIntegers()
+        {
+            Context context = new Context();
+
+            context.SetValue("two", 2);
+            context.SetValue("three", 3);
+
+            var expr = new MultiplyExpression(new NameExpression("two"), new NameExpression("three"));
+
+            var result = expr.Evaluate(context);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
     }
 }
