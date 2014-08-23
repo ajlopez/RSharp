@@ -6,26 +6,11 @@
     using System.Text;
     using RSharp.Core.Operations;
 
-    public class AddExpression : IExpression
+    public class AddExpression : BinaryExpression
     {
-        private IExpression leftexpr;
-        private IExpression rightexpr;
-        private AddOperation oper;
-
         public AddExpression(IExpression leftexpr, IExpression rightexpr)
+            : base(new AddOperation(), leftexpr, rightexpr)
         {
-            this.leftexpr = leftexpr;
-            this.rightexpr = rightexpr;
-            this.oper = new AddOperation();
-        }
-
-        public IExpression LeftExpression { get { return this.leftexpr; } }
-
-        public IExpression RightExpression { get { return this.rightexpr; } }
-
-        public object Evaluate(Context context)
-        {
-            return this.oper.Apply(this.leftexpr.Evaluate(context), this.rightexpr.Evaluate(context));
         }
     }
 }

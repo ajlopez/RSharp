@@ -9,6 +9,7 @@
     using RSharp.Core.Functions;
     using RSharp.Core.Interpreter;
     using RSharp.Core.Language;
+    using RSharp.Core.Operations;
 
     [TestClass]
     public class ParserTests
@@ -75,6 +76,8 @@
 
             Assert.IsNotNull(addexpr.LeftExpression);
             Assert.IsNotNull(addexpr.RightExpression);
+            Assert.IsNotNull(addexpr.BinaryOperation);
+            Assert.IsInstanceOfType(addexpr.BinaryOperation, typeof(AddOperation));
             Assert.IsInstanceOfType(addexpr.LeftExpression, typeof(ConstantExpression));
             Assert.AreEqual(1, ((ConstantExpression)addexpr.LeftExpression).Value);
             Assert.IsInstanceOfType(addexpr.RightExpression, typeof(ConstantExpression));
@@ -97,6 +100,8 @@
 
             Assert.IsNotNull(subexpr.LeftExpression);
             Assert.IsNotNull(subexpr.RightExpression);
+            Assert.IsNotNull(subexpr.BinaryOperation);
+            Assert.IsInstanceOfType(subexpr.BinaryOperation, typeof(SubtractOperation));
             Assert.IsInstanceOfType(subexpr.LeftExpression, typeof(ConstantExpression));
             Assert.AreEqual(1, ((ConstantExpression)subexpr.LeftExpression).Value);
             Assert.IsInstanceOfType(subexpr.RightExpression, typeof(ConstantExpression));
@@ -115,14 +120,16 @@
             Assert.IsNotNull(expr);
             Assert.IsInstanceOfType(expr, typeof(MultiplyExpression));
 
-            var subexpr = (MultiplyExpression)expr;
+            var multexpr = (MultiplyExpression)expr;
 
-            Assert.IsNotNull(subexpr.LeftExpression);
-            Assert.IsNotNull(subexpr.RightExpression);
-            Assert.IsInstanceOfType(subexpr.LeftExpression, typeof(ConstantExpression));
-            Assert.AreEqual(2, ((ConstantExpression)subexpr.LeftExpression).Value);
-            Assert.IsInstanceOfType(subexpr.RightExpression, typeof(ConstantExpression));
-            Assert.AreEqual(3, ((ConstantExpression)subexpr.RightExpression).Value);
+            Assert.IsNotNull(multexpr.LeftExpression);
+            Assert.IsNotNull(multexpr.RightExpression);
+            Assert.IsNotNull(multexpr.BinaryOperation);
+            Assert.IsInstanceOfType(multexpr.BinaryOperation, typeof(MultiplyOperation));
+            Assert.IsInstanceOfType(multexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.AreEqual(2, ((ConstantExpression)multexpr.LeftExpression).Value);
+            Assert.IsInstanceOfType(multexpr.RightExpression, typeof(ConstantExpression));
+            Assert.AreEqual(3, ((ConstantExpression)multexpr.RightExpression).Value);
 
             Assert.IsNull(parser.ParseExpression());
         }
