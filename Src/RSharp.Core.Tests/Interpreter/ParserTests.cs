@@ -179,6 +179,24 @@
             }
         }
 
+        [TestMethod]
+        public void ParseAssignExpression()
+        {
+            var parser = new Parser("a <- 1");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(AssignExpression));
+
+            var aexpr = (AssignExpression)expr;
+            Assert.AreEqual("a", aexpr.Name);
+            Assert.IsNotNull(aexpr.Expression);
+            IsConstantExpression(aexpr.Expression, 1);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
         private static void IsConstantExpression(IExpression expr, object value)
         {
             Assert.IsNotNull(expr);

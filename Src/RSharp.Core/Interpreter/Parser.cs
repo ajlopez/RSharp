@@ -35,6 +35,9 @@
             if (expr == null)
                 return null;
 
+            if (expr is NameExpression && this.TryNextToken(TokenType.Operator, "<-"))
+                return new AssignExpression(((NameExpression)expr).Name, this.ParseExpression());
+
             Token token;
 
             for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-" || token.Value == "*"); token = this.NextToken())
