@@ -27,8 +27,8 @@
                 if (value is Vector)
                     foreach (var line in ((Vector)value).ToLines())
                         Console.WriteLine(line);
-                else
-                    Console.WriteLine(expr.Evaluate(context).ToString());
+                else if (value != null)
+                    Console.WriteLine(value.ToString());
 
                 Console.Out.Flush();
             }
