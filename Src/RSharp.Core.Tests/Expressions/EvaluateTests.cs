@@ -104,5 +104,19 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result);
         }
+
+        [TestMethod]
+        public void EvaluateAssignExpression()
+        {
+            Context context = new Context();
+            AssignExpression expr = new AssignExpression("one", new ConstantExpression(1));
+
+            Assert.AreEqual("one", expr.Name);
+            Assert.IsNotNull(expr.Expression);
+
+            Assert.IsNull(expr.Evaluate(context));
+
+            Assert.AreEqual(1, context.GetValue("one"));
+        }
     }
 }
