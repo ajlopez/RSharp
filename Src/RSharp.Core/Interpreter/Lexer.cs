@@ -39,6 +39,9 @@
             if (char.IsLetter(ch))
                 return this.NextName(ch);
 
+            if (ch == '-' && this.TryNextChar('>'))
+                return new Token(TokenType.Operator, "->");
+
             if (ch == '+' || ch == '-' || ch == '*')
                 return new Token(TokenType.Operator, ch.ToString());
 

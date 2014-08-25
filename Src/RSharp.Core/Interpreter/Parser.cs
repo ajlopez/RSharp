@@ -50,6 +50,12 @@
                     expr = new MultiplyExpression(expr, this.ParseTerm());
             }
 
+            if (token != null && token.Type == TokenType.Operator && token.Value == "->")
+            {
+                string name = this.ParseName();
+                return new AssignExpression(name, expr);
+            }
+
             this.PushToken(token);
 
             return expr;
@@ -125,6 +131,16 @@
             this.PushToken(token);
 
             return false;
+        }
+
+        private string ParseName()
+        {
+            var token = this.NextToken();
+
+            if (token == null || token.Type != TokenType.Name)
+                throw new ParserException("Name expected");
+
+            return token.Value;
         }
     }
 }

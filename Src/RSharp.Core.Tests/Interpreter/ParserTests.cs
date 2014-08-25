@@ -197,6 +197,24 @@
             Assert.IsNull(parser.ParseExpression());
         }
 
+        [TestMethod]
+        public void ParseInverseAssignExpression()
+        {
+            var parser = new Parser("1 -> a");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(AssignExpression));
+
+            var aexpr = (AssignExpression)expr;
+            Assert.AreEqual("a", aexpr.Name);
+            Assert.IsNotNull(aexpr.Expression);
+            IsConstantExpression(aexpr.Expression, 1);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
         private static void IsConstantExpression(IExpression expr, object value)
         {
             Assert.IsNotNull(expr);
