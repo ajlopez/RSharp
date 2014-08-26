@@ -41,13 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
-    <Compile Include="Expressions\AddExpression.cs" />
     <Compile Include="Expressions\AssignExpression.cs" />
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\CallExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
-    <Compile Include="Expressions\MultiplyExpression.cs" />
-    <Compile Include="Expressions\SubtractExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
     <Compile Include="Functions\IFunction.cs" />

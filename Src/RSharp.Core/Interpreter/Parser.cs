@@ -2,11 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text;
     using RSharp.Core.Expressions;
-    using System.Globalization;
+    using RSharp.Core.Operations;
 
     public class Parser
     {
@@ -43,11 +44,11 @@
             for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-" || token.Value == "*"); token = this.NextToken())
             {
                 if (token.Value == "+")
-                    expr = new AddExpression(expr, this.ParseTerm());
+                    expr = new BinaryExpression(new AddOperation(), expr, this.ParseTerm());
                 else if (token.Value == "-")
-                    expr = new SubtractExpression(expr, this.ParseTerm());
+                    expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseTerm());
                 else
-                    expr = new MultiplyExpression(expr, this.ParseTerm());
+                    expr = new BinaryExpression(new MultiplyOperation(), expr, this.ParseTerm());
             }
 
             if (token != null && token.Type == TokenType.Operator && token.Value == "->")

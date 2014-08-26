@@ -70,9 +70,9 @@
             var expr = parser.ParseExpression();
 
             Assert.IsNotNull(expr);
-            Assert.IsInstanceOfType(expr, typeof(AddExpression));
+            Assert.IsInstanceOfType(expr, typeof(BinaryExpression));
 
-            var addexpr = (AddExpression)expr;
+            var addexpr = (BinaryExpression)expr;
 
             Assert.IsNotNull(addexpr.LeftExpression);
             Assert.IsNotNull(addexpr.RightExpression);
@@ -94,9 +94,9 @@
             var expr = parser.ParseExpression();
 
             Assert.IsNotNull(expr);
-            Assert.IsInstanceOfType(expr, typeof(SubtractExpression));
+            Assert.IsInstanceOfType(expr, typeof(BinaryExpression));
 
-            var subexpr = (SubtractExpression)expr;
+            var subexpr = (BinaryExpression)expr;
 
             Assert.IsNotNull(subexpr.LeftExpression);
             Assert.IsNotNull(subexpr.RightExpression);
@@ -118,9 +118,9 @@
             var expr = parser.ParseExpression();
 
             Assert.IsNotNull(expr);
-            Assert.IsInstanceOfType(expr, typeof(MultiplyExpression));
+            Assert.IsInstanceOfType(expr, typeof(BinaryExpression));
 
-            var multexpr = (MultiplyExpression)expr;
+            var multexpr = (BinaryExpression)expr;
 
             Assert.IsNotNull(multexpr.LeftExpression);
             Assert.IsNotNull(multexpr.RightExpression);

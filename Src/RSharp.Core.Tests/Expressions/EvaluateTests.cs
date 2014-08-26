@@ -8,6 +8,7 @@
     using RSharp.Core.Expressions;
     using RSharp.Core.Functions;
     using RSharp.Core.Language;
+    using RSharp.Core.Operations;
 
     [TestClass]
     public class EvaluateTests
@@ -65,7 +66,7 @@
             context.SetValue("one", 1);
             context.SetValue("two", 2);
 
-            var expr = new AddExpression(new NameExpression("one"), new NameExpression("two"));
+            var expr = new BinaryExpression(new AddOperation(), new NameExpression("one"), new NameExpression("two"));
 
             var result = expr.Evaluate(context);
 
@@ -81,7 +82,7 @@
             context.SetValue("one", 1);
             context.SetValue("two", 2);
 
-            var expr = new SubtractExpression(new NameExpression("one"), new NameExpression("two"));
+            var expr = new BinaryExpression(new SubtractOperation(), new NameExpression("one"), new NameExpression("two"));
 
             var result = expr.Evaluate(context);
 
@@ -97,7 +98,7 @@
             context.SetValue("two", 2);
             context.SetValue("three", 3);
 
-            var expr = new MultiplyExpression(new NameExpression("two"), new NameExpression("three"));
+            var expr = new BinaryExpression(new MultiplyOperation(), new NameExpression("two"), new NameExpression("three"));
 
             var result = expr.Evaluate(context);
 
