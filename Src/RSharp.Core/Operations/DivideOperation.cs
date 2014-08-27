@@ -24,7 +24,7 @@
                 else if (right is double)
                     return (int)left / (double)right;
                 else
-                    return ((Vector)right).Add(left);
+                    return ((Vector)right).ApplyToRight(this, left);
             else if (left is double)
                 if (right is int)
                     return (double)left / (int)right;
