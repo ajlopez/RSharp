@@ -135,6 +135,30 @@
         }
 
         [TestMethod]
+        public void ParseDivideExpression()
+        {
+            var parser = new Parser("4/5");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(BinaryExpression));
+
+            var multexpr = (BinaryExpression)expr;
+
+            Assert.IsNotNull(multexpr.LeftExpression);
+            Assert.IsNotNull(multexpr.RightExpression);
+            Assert.IsNotNull(multexpr.BinaryOperation);
+            Assert.IsInstanceOfType(multexpr.BinaryOperation, typeof(DivideOperation));
+            Assert.IsInstanceOfType(multexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.AreEqual(4, ((ConstantExpression)multexpr.LeftExpression).Value);
+            Assert.IsInstanceOfType(multexpr.RightExpression, typeof(ConstantExpression));
+            Assert.AreEqual(5, ((ConstantExpression)multexpr.RightExpression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseAndEvaluateCallExpression()
         {
             var parser = new Parser("c(1,2,3)");

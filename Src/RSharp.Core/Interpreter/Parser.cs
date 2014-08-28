@@ -41,14 +41,16 @@
 
             Token token;
 
-            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-" || token.Value == "*"); token = this.NextToken())
+            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-" || token.Value == "*" || token.Value == "/"); token = this.NextToken())
             {
                 if (token.Value == "+")
                     expr = new BinaryExpression(new AddOperation(), expr, this.ParseTerm());
                 else if (token.Value == "-")
                     expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseTerm());
-                else
+                else if (token.Value == "*")
                     expr = new BinaryExpression(new MultiplyOperation(), expr, this.ParseTerm());
+                else
+                    expr = new BinaryExpression(new DivideOperation(), expr, this.ParseTerm());
             }
 
             if (token != null && token.Type == TokenType.Operator && token.Value == "->")

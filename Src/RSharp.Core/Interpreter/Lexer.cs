@@ -42,7 +42,7 @@
             if (ch == '-' && this.TryNextChar('>'))
                 return new Token(TokenType.Operator, "->");
 
-            if (ch == '+' || ch == '-' || ch == '*')
+            if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
                 return new Token(TokenType.Operator, ch.ToString());
 
             if (ch == '<' && this.TryNextChar('-'))
