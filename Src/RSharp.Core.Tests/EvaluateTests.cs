@@ -1,0 +1,54 @@
+﻿namespace RSharp.Core.Tests
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using RSharp.Core.Expressions;
+    using RSharp.Core.Interpreter;
+    using RSharp.Core.Language;
+
+    [TestClass]
+    public class EvaluateTests
+    {
+        [TestMethod]
+        public void EvaluateMakeVector()
+        {
+            var result = Evaluate("c(1,2,3)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(3, vector.Length);
+            Assert.AreEqual(1, vector[0]);
+            Assert.AreEqual(2, vector[1]);
+            Assert.AreEqual(3, vector[2]);
+        }
+
+        [TestMethod]
+        public void EvaluateSimpleArithmeticExpressions()
+        {
+            Assert.AreEqual(3, Evaluate("1 + 2"));
+            Assert.AreEqual(6, Evaluate("2 * 3"));
+            Assert.AreEqual(8, Evaluate("10 - 2"));
+            Assert.AreEqual(2, Evaluate("4 / 2"));
+            Assert.AreEqual(1 / 2.0, Evaluate("1/2"));
+        }
+
+        private static object Evaluate(string text)
+        {
+            Machine machine = new Machine();
+            Parser parser = new Parser(text);
+            IExpression expr = parser.ParseExpression();
+
+            var result = machine.Evaluate(expr);
+
+            Assert.IsNull(parser.ParseExpression());
+
+            return result;
+        }
+    }
+}
