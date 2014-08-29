@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -13,6 +14,7 @@
     {
         private Lexer lexer;
         private Stack<Token> tokens = new Stack<Token>();
+        private string[][] binlevels = new string[][] { new string[] { "+", "-" }, new string[] { "*", "/" } };
 
         public Parser(string text)
             : this(new StringReader(text))
@@ -31,7 +33,7 @@
 
         public IExpression ParseExpression()
         {
-            IExpression expr = this.ParseTerm();
+            IExpression expr = this.ParseBinaryExpression(0);
 
             if (expr == null)
                 return null;
@@ -39,24 +41,34 @@
             if (expr is NameExpression && this.TryNextToken(TokenType.Operator, "<-"))
                 return new AssignExpression(((NameExpression)expr).Name, this.ParseExpression());
 
+            if (this.TryNextToken(TokenType.Operator, "->"))
+                return new AssignExpression(this.ParseName(), expr);
+
+            return expr;
+        }
+
+        private IExpression ParseBinaryExpression(int level) 
+        {
+            if (level >= binlevels.Length)
+                return this.ParseTerm();
+
+            IExpression expr = this.ParseBinaryExpression(level + 1);
+
+            if (expr == null)
+                return null;
+
             Token token;
 
-            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && (token.Value == "+" || token.Value == "-" || token.Value == "*" || token.Value == "/"); token = this.NextToken())
+            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && binlevels[level].Contains(token.Value); token = this.NextToken())
             {
                 if (token.Value == "+")
-                    expr = new BinaryExpression(new AddOperation(), expr, this.ParseTerm());
+                    expr = new BinaryExpression(new AddOperation(), expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "-")
-                    expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseTerm());
+                    expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "*")
-                    expr = new BinaryExpression(new MultiplyOperation(), expr, this.ParseTerm());
+                    expr = new BinaryExpression(new MultiplyOperation(), expr, this.ParseBinaryExpression(level + 1));
                 else
-                    expr = new BinaryExpression(new DivideOperation(), expr, this.ParseTerm());
-            }
-
-            if (token != null && token.Type == TokenType.Operator && token.Value == "->")
-            {
-                string name = this.ParseName();
-                return new AssignExpression(name, expr);
+                    expr = new BinaryExpression(new DivideOperation(), expr, this.ParseBinaryExpression(level + 1));
             }
 
             this.PushToken(token);
@@ -91,6 +103,7 @@
         {
             var token = this.NextToken();
 
+
             while (token != null && token.Type == TokenType.EndOfLine)
                 token = this.NextToken();
 
@@ -100,7 +113,10 @@
             if (token.Type == TokenType.Name)
                 return new NameExpression(token.Value);
 
-            return new ConstantExpression(int.Parse(token.Value, CultureInfo.InvariantCulture));
+            if (token.Type == TokenType.Integer)
+                return new ConstantExpression(int.Parse(token.Value, CultureInfo.InvariantCulture));
+
+            throw new ParserException(string.Format("Unexpected '{0}'", token.Value));
         }
 
         private Token NextToken()

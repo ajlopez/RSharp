@@ -38,6 +38,16 @@
             Assert.AreEqual(1 / 2.0, Evaluate("1/2"));
         }
 
+        [TestMethod]
+        public void EvaluateArithmeticExpressionsUsingPrecedence()
+        {
+            Assert.AreEqual(7, Evaluate("1 + 2 * 3"));
+            Assert.AreEqual(7, Evaluate("2 * 3 + 1"));
+            Assert.AreEqual(9, Evaluate("10 - 2 / 2"));
+            Assert.AreEqual(3, Evaluate("4 / 2 + 1"));
+            Assert.AreEqual(1 / 2.0 * 3, Evaluate("1/2 * 3"));
+        }
+
         private static object Evaluate(string text)
         {
             Machine machine = new Machine();
