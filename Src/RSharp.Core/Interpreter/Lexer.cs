@@ -8,6 +8,8 @@
 
     public class Lexer
     {
+        private static string[] operators = new string[] { "+", "-", "*", "/", "<-", "->" };
+
         private Stack<int> chars = new Stack<int>();
         private TextReader reader;
 
@@ -39,14 +41,17 @@
             if (char.IsLetter(ch))
                 return this.NextName(ch);
 
-            if (ch == '-' && this.TryNextChar('>'))
-                return new Token(TokenType.Operator, "->");
+            if (operators.Any(op => op[0] == ch))
+            {
+                foreach (var oper in operators.Where(op => op.Length == 2 && op[0] == ch))
+                    if (this.TryNextChar(oper[1]))
+                        return new Token(TokenType.Operator, oper);
 
-            if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
-                return new Token(TokenType.Operator, ch.ToString());
+                var sch = ch.ToString();
 
-            if (ch == '<' && this.TryNextChar('-'))
-                return new Token(TokenType.Operator, "<-");
+                if (operators.Contains(sch))
+                    return new Token(TokenType.Operator, sch);
+            }
 
             if (ch == '\n')
                 return new Token(TokenType.EndOfLine, "\n");
