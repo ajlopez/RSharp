@@ -1,12 +1,12 @@
 ﻿namespace RSharp.Core.Tests.Operations
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RSharp.Core.Operations;
     using RSharp.Core.Language;
+    using RSharp.Core.Operations;
 
     [TestClass]
     public class OperationTests
@@ -103,7 +103,7 @@
         {
             AddOperation op = new AddOperation();
             Vector v = new Vector(new object[] { 1, 2, 3 });
-            Vector v2= new Vector(new object[] { 4, 5 });
+            Vector v2 = new Vector(new object[] { 4, 5 });
 
             var result = op.Apply(v, v2);
 

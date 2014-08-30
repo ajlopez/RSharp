@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
-    using RSharp.Core.Interpreter;
-    using System.IO;
     using RSharp.Core;
     using RSharp.Core.Functions;
+    using RSharp.Core.Interpreter;
     using RSharp.Core.Language;
 
     public class Program
@@ -36,11 +36,11 @@
 
         private class ConsoleReader : TextReader
         {
-            int lastch;
+            private int lastch;
 
             public override int Read()
             {
-                if (this.lastch == 0 || this.lastch > 0 && ((char)this.lastch) == '\n')
+                if (this.lastch == 0 || (this.lastch > 0 && ((char)this.lastch) == '\n'))
                 {
                     Console.Write("> ");
                     Console.Out.Flush();

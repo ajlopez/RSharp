@@ -49,7 +49,7 @@
 
         private IExpression ParseBinaryExpression(int level) 
         {
-            if (level >= binlevels.Length)
+            if (level >= this.binlevels.Length)
                 return this.ParseTerm();
 
             IExpression expr = this.ParseBinaryExpression(level + 1);
@@ -59,7 +59,7 @@
 
             Token token;
 
-            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && binlevels[level].Contains(token.Value); token = this.NextToken())
+            for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && this.binlevels[level].Contains(token.Value); token = this.NextToken())
             {
                 if (token.Value == "+")
                     expr = new BinaryExpression(new AddOperation(), expr, this.ParseBinaryExpression(level + 1));
@@ -102,7 +102,6 @@
         private IExpression ParseSimpleTerm()
         {
             var token = this.NextToken();
-
 
             while (token != null && token.Type == TokenType.EndOfLine)
                 token = this.NextToken();

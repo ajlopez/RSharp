@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
-    using System.IO;
 
     public class Lexer
     {
@@ -65,6 +65,14 @@
             return new Token(TokenType.Delimiter, ch.ToString());
         }
 
+        private static bool IsWhiteSpace(char ch)
+        {
+            if (ch == '\n' || ch == '\r')
+                return false;
+
+            return char.IsWhiteSpace(ch);
+        }
+
         private Token NextInteger(char firstch)
         {
             string value = firstch.ToString();
@@ -116,14 +124,6 @@
             this.PushChar(ich);
 
             return false;
-        }
-
-        private static bool IsWhiteSpace(char ch)
-        {
-            if (ch == '\n' || ch == '\r')
-                return false;
-
-            return char.IsWhiteSpace(ch);
         }
     }
 }
