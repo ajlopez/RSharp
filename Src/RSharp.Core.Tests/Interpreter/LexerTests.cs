@@ -152,6 +152,29 @@
         }
 
         [TestMethod]
+        public void GetOperators()
+        {
+            var operators = new string[] { "+", "-", "*", "/", "^", ":", ">", "<", ">=", "<=", "==" };
+            var text = string.Empty;
+
+            foreach (var oper in operators)
+                text += oper + " ";
+
+            Lexer lexer = new Lexer(text);
+
+            foreach (var oper in operators)
+            {
+                var result = lexer.NextToken();
+
+                Assert.IsNotNull(result);
+                Assert.AreEqual(TokenType.Operator, result.Type);
+                Assert.AreEqual(oper, result.Value);
+            }
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetRightArrow()
         {
             Lexer lexer = new Lexer("->");
