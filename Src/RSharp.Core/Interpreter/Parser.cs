@@ -109,6 +109,13 @@
             if (token == null)
                 return null;
 
+            if (token.Type == TokenType.Delimiter && token.Value == "(")
+            {
+                var expr = this.ParseExpression();
+                this.NextToken(TokenType.Delimiter, ")");
+                return expr;
+            }
+
             if (token.Type == TokenType.Name)
                 return new NameExpression(token.Value);
 
