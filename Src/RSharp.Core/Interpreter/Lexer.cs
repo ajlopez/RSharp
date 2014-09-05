@@ -9,6 +9,7 @@
     public class Lexer
     {
         private static string[] operators = new string[] { "+", "-", "*", "/", "<-", "->", "^", ":", ">", "<", "==", "<=", ">=" };
+        private static char[] delimiters = new char[] { ',', '(', ')', ';' };
 
         private Stack<int> chars = new Stack<int>();
         private TextReader reader;
@@ -41,6 +42,9 @@
             if (char.IsLetter(ch))
                 return this.NextName(ch);
 
+            if (delimiters.Contains(ch))
+                return new Token(TokenType.Delimiter, ch.ToString());
+
             if (operators.Any(op => op[0] == ch))
             {
                 foreach (var oper in operators.Where(op => op.Length == 2 && op[0] == ch))
@@ -62,7 +66,7 @@
                 else
                     return new Token(TokenType.EndOfLine, "\r");
 
-            return new Token(TokenType.Delimiter, ch.ToString());
+            throw new LexerException(string.Format("Unexpected '{0}'", ch));
         }
 
         private static bool IsWhiteSpace(char ch)
