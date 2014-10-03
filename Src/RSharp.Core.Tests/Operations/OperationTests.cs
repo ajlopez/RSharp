@@ -400,5 +400,23 @@
             Assert.AreEqual(2 / 5.0, vector[1]);
             Assert.AreEqual(3 / 4.0, vector[2]);
         }
+
+        [TestMethod]
+        public void SequenceCreateVector()
+        {
+            SequenceOperation op = new SequenceOperation();
+
+            var result = op.Apply(1, 20);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+
+            Assert.AreEqual(20, vector.Length);
+
+            for (int k = 0; k < 20; k++)
+                Assert.AreEqual(k + 1, vector[k]);
+        }
     }
 }

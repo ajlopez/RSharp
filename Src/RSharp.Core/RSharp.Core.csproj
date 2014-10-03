@@ -58,6 +58,7 @@
     <Compile Include="Language\Vector.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Operations\AddOperation.cs" />
+    <Compile Include="Operations\SequenceOperation.cs" />
     <Compile Include="Operations\DivideOperation.cs" />
     <Compile Include="Operations\MultiplyOperation.cs" />
     <Compile Include="Operations\IBinaryOperation.cs" />
