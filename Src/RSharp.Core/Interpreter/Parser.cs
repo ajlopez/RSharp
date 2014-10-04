@@ -14,7 +14,7 @@
     {
         private Lexer lexer;
         private Stack<Token> tokens = new Stack<Token>();
-        private string[][] binlevels = new string[][] { new string[] { "+", "-" }, new string[] { "*", "/" } };
+        private string[][] binlevels = new string[][] { new string[] { ":" }, new string[] { "+", "-" }, new string[] { "*", "/" } };
 
         public Parser(string text)
             : this(new StringReader(text))
@@ -61,7 +61,9 @@
 
             for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && this.binlevels[level].Contains(token.Value); token = this.NextToken())
             {
-                if (token.Value == "+")
+                if (token.Value == ":")
+                    expr = new BinaryExpression(new SequenceOperation(), expr, this.ParseBinaryExpression(level + 1));
+                else if (token.Value == "+")
                     expr = new BinaryExpression(new AddOperation(), expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "-")
                     expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseBinaryExpression(level + 1));

@@ -222,6 +222,24 @@
         }
 
         [TestMethod]
+        public void ParseSequenceExpression()
+        {
+            var parser = new Parser("1:20");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(BinaryExpression));
+
+            var bexpr = (BinaryExpression)expr;
+            Assert.IsInstanceOfType(bexpr.BinaryOperation, typeof(SequenceOperation));
+            IsConstantExpression(bexpr.LeftExpression, 1);
+            IsConstantExpression(bexpr.RightExpression, 20);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseInverseAssignExpression()
         {
             var parser = new Parser("1 -> a");
