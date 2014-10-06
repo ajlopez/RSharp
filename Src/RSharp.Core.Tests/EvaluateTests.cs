@@ -58,6 +58,36 @@
             Assert.AreEqual(1 / 6.0, Evaluate("1/(2 * 3)"));
         }
 
+        [TestMethod]
+        public void EvaluateRange()
+        {
+            var result = Evaluate("1:20");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+            Assert.AreEqual(20, vector.Length);
+
+            for (int k = 1; k <= 20; k++)
+                Assert.AreEqual(k, vector[k - 1]);
+        }
+
+        [TestMethod]
+        public void EvaluateRangeWithExpression()
+        {
+            var result = Evaluate("1:(10+10)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Vector));
+
+            var vector = (Vector)result;
+            Assert.AreEqual(20, vector.Length);
+
+            for (int k = 1; k <= 20; k++)
+                Assert.AreEqual(k, vector[k - 1]);
+        }
+
         private static object Evaluate(string text)
         {
             Machine machine = new Machine();
