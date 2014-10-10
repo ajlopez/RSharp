@@ -36,6 +36,9 @@
 
             var ch = (char)ich;
 
+            if (ch == '"')
+                return this.NextString();
+
             if (char.IsDigit(ch))
                 return this.NextInteger(ch);
 
@@ -89,6 +92,25 @@
             this.PushChar(ich);
 
             return new Token(TokenType.Integer, value);
+        }
+
+        private Token NextString()
+        {
+            string value = string.Empty;
+
+            int ich;
+
+            for (ich = this.NextChar(); ich >= 0; ich = this.NextChar())
+            {
+                char ch = (char)ich;
+
+                if (ch == '"')
+                    break;
+
+                value += ch;
+            }
+
+            return new Token(TokenType.String, value);
         }
 
         private Token NextName(char firstch)

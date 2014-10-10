@@ -35,6 +35,18 @@
         }
 
         [TestMethod]
+        public void GetString()
+        {
+            Lexer lexer = new Lexer("\"foo\"");
+
+            var token = lexer.NextToken();
+
+            IsToken(token, TokenType.String, "foo");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetInteger()
         {
             Lexer lexer = new Lexer("42");
