@@ -71,6 +71,18 @@
         }
 
         [TestMethod]
+        public void GetReal()
+        {
+            Lexer lexer = new Lexer("3.14159");
+
+            var token = lexer.NextToken();
+
+            IsToken(token, TokenType.Real, "3.14159");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetDelimiters()
         {
             Lexer lexer = new Lexer(",;()");
