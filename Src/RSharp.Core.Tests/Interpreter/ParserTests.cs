@@ -27,6 +27,22 @@
         }
 
         [TestMethod]
+        public void ParseTwoIntegerExpressions()
+        {
+            var parser = new Parser("123 456");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, 123);
+
+            expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, 456);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseIntegerExpressionWithEndOfLine()
         {
             var parser = new Parser("123\r\n");
