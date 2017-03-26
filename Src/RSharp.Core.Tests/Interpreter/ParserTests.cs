@@ -301,6 +301,36 @@
             Assert.IsNull(parser.ParseExpression());
         }
 
+        [TestMethod]
+        public void ParseCompositeExpression()
+        {
+            var parser = new Parser("{ a <- 1 b <- 42 }");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(CompositeExpression));
+
+            var cexpr = (CompositeExpression)expr;
+
+            Assert.IsNotNull(cexpr.Expressions);
+            Assert.AreEqual(2, cexpr.Expressions.Count);
+
+            Assert.IsInstanceOfType(cexpr.Expressions[0], typeof(AssignExpression));
+            var aexpr = (AssignExpression)cexpr.Expressions[0];
+            Assert.AreEqual("a", aexpr.Name);
+            Assert.IsNotNull(aexpr.Expression);
+            IsConstantExpression(aexpr.Expression, 1);
+
+            Assert.IsInstanceOfType(cexpr.Expressions[1], typeof(AssignExpression));
+            var bexpr = (AssignExpression)cexpr.Expressions[1];
+            Assert.AreEqual("b", bexpr.Name);
+            Assert.IsNotNull(bexpr.Expression);
+            IsConstantExpression(bexpr.Expression, 42);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
         private static void IsConstantExpression(IExpression expr, object value)
         {
             Assert.IsNotNull(expr);

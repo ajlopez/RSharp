@@ -118,13 +118,32 @@
                 return expr;
             }
 
+            if (token.Type == TokenType.Delimiter && token.Value == "{")
+            {
+                var expr = this.ParseCompositeExpression();
+                this.NextToken(TokenType.Delimiter, "}");
+                return expr;
+            }
+
             if (token.Type == TokenType.Name)
                 return new NameExpression(token.Value);
 
             if (token.Type == TokenType.Integer)
                 return new ConstantExpression(int.Parse(token.Value, CultureInfo.InvariantCulture));
 
-            throw new ParserException(string.Format("Unexpected '{0}'", token.Value));
+            this.PushToken(token);
+
+            return null;
+        }
+
+        private CompositeExpression ParseCompositeExpression()
+        {
+            IList<IExpression> expressions = new List<IExpression>();
+
+            for (var expr = this.ParseExpression(); expr != null; expr = this.ParseExpression())
+                expressions.Add(expr);
+
+            return new CompositeExpression(expressions);
         }
 
         private Token NextToken()

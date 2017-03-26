@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="Expressions\AssignExpression.cs" />
+    <Compile Include="Expressions\CompositeExpression.cs" />
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\CallExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
