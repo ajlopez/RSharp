@@ -190,7 +190,7 @@
         [TestMethod]
         public void GetOperators()
         {
-            var operators = new string[] { "+", "-", "*", "/", "^", ":", ">", "<", ">=", "<=", "==" };
+            var operators = new string[] { "+", "-", "*", "/", "^", ":", ">", "<", ">=", "<=", "==", "%%" };
             var text = string.Empty;
 
             foreach (var oper in operators)
