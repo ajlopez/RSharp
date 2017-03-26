@@ -238,6 +238,34 @@
         }
 
         [TestMethod]
+        public void ParseTwoAssignExpressions()
+        {
+            var parser = new Parser("a <- 1 b <- 42");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(AssignExpression));
+
+            var aexpr = (AssignExpression)expr;
+            Assert.AreEqual("a", aexpr.Name);
+            Assert.IsNotNull(aexpr.Expression);
+            IsConstantExpression(aexpr.Expression, 1);
+
+            expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(AssignExpression));
+
+            var bexpr = (AssignExpression)expr;
+            Assert.AreEqual("b", bexpr.Name);
+            Assert.IsNotNull(bexpr.Expression);
+            IsConstantExpression(bexpr.Expression, 42);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseSequenceExpression()
         {
             var parser = new Parser("1:20");
