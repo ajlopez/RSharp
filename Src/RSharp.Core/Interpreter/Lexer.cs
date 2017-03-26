@@ -151,12 +151,24 @@
 
         private int NextCharSkippingWhiteSpaces()
         {
-            int ich = this.NextChar();
+            while (true)
+            {
+                int ich = this.NextChar();
 
-            while (ich >= 0 && IsWhiteSpace((char)ich))
-                ich = this.NextChar();
+                while (ich >= 0 && IsWhiteSpace((char)ich))
+                    ich = this.NextChar();
 
-            return ich;
+                if (ich >= 0 && (char)ich == '#')
+                {
+                    for (ich = this.NextChar(); ich >= 0; ich = this.NextChar())
+                        if ((char)ich == '\n' || (char)ich == '\r')
+                            break;
+
+                    continue;
+                }
+
+                return ich;
+            }
         }
 
         private void PushChar(int ich)

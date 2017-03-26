@@ -35,6 +35,18 @@
         }
 
         [TestMethod]
+        public void GetNameSkippingLineComments()
+        {
+            Lexer lexer = new Lexer("foo # this is a comment\n# this is another comment");
+
+            var token = lexer.NextToken();
+
+            IsToken(token, TokenType.Name, "foo");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetString()
         {
             Lexer lexer = new Lexer("\"foo\"");
