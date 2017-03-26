@@ -26,10 +26,7 @@
 
         public Token NextToken()
         {
-            int ich = this.NextChar();
-
-            while (ich >= 0 && IsWhiteSpace((char)ich))
-                ich = this.NextChar();
+            int ich = this.NextCharSkippingWhiteSpaces();
 
             if (ich < 0)
                 return null;
@@ -150,6 +147,16 @@
                 return this.chars.Pop();
 
             return this.reader.Read();
+        }
+
+        private int NextCharSkippingWhiteSpaces()
+        {
+            int ich = this.NextChar();
+
+            while (ich >= 0 && IsWhiteSpace((char)ich))
+                ich = this.NextChar();
+
+            return ich;
         }
 
         private void PushChar(int ich)
