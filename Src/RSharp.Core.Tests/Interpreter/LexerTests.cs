@@ -97,12 +97,14 @@
         [TestMethod]
         public void GetDelimiters()
         {
-            Lexer lexer = new Lexer(",;()");
+            Lexer lexer = new Lexer(",;(){}");
 
             IsToken(lexer.NextToken(), TokenType.Delimiter, ",");
             IsToken(lexer.NextToken(), TokenType.Delimiter, ";");
             IsToken(lexer.NextToken(), TokenType.Delimiter, "(");
             IsToken(lexer.NextToken(), TokenType.Delimiter, ")");
+            IsToken(lexer.NextToken(), TokenType.Delimiter, "{");
+            IsToken(lexer.NextToken(), TokenType.Delimiter, "}");
 
             Assert.IsNull(lexer.NextToken());
         }
