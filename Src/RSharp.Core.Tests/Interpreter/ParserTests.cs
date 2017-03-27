@@ -331,6 +331,48 @@
             Assert.IsNull(parser.ParseExpression());
         }
 
+        [TestMethod]
+        public void ParseFunctionExpression()
+        {
+            var parser = new Parser("function (a, b) return(a + b)");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(FunctionExpression));
+
+            var fnexpr = (FunctionExpression)expr;
+
+            Assert.IsNotNull(fnexpr.Arguments);
+            Assert.AreEqual(2, fnexpr.Arguments.Count);
+            Assert.AreEqual("a", fnexpr.Arguments[0]);
+            Assert.AreEqual("b", fnexpr.Arguments[1]);
+
+            Assert.IsNotNull(fnexpr.Expression);
+            Assert.IsInstanceOfType(fnexpr.Expression, typeof(CallExpression));
+
+            var cexpr = (CallExpression)fnexpr.Expression;
+            Assert.IsNotNull(cexpr.FunctionExpression);
+            Assert.IsInstanceOfType(cexpr.FunctionExpression, typeof(NameExpression));
+            Assert.AreEqual("return", ((NameExpression)cexpr.FunctionExpression).Name);
+            Assert.IsNotNull(cexpr.ArgumentExpressions);
+            Assert.AreEqual(1, cexpr.ArgumentExpressions.Count);
+            Assert.IsNotNull(cexpr.ArgumentExpressions[0]);
+            Assert.IsInstanceOfType(cexpr.ArgumentExpressions[0], typeof(BinaryExpression));
+
+            var addexpr = (BinaryExpression)cexpr.ArgumentExpressions[0];
+
+            Assert.IsInstanceOfType(addexpr.BinaryOperation, typeof(AddOperation));
+            Assert.IsNotNull(addexpr.LeftExpression);
+            Assert.IsInstanceOfType(addexpr.LeftExpression, typeof(NameExpression));
+            Assert.AreEqual("a", ((NameExpression)addexpr.LeftExpression).Name);
+            Assert.IsNotNull(addexpr.RightExpression);
+            Assert.IsInstanceOfType(addexpr.RightExpression, typeof(NameExpression));
+            Assert.AreEqual("b", ((NameExpression)addexpr.RightExpression).Name);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
         private static void IsConstantExpression(IExpression expr, object value)
         {
             Assert.IsNotNull(expr);

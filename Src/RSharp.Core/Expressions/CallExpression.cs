@@ -17,6 +17,10 @@
             this.argexprs = argexprs;
         }
 
+        public IExpression FunctionExpression { get { return this.fnexpr; } }
+
+        public IList<IExpression> ArgumentExpressions { get { return this.argexprs; } }
+
         public object Evaluate(Context context)
         {
             IFunction fn = (IFunction)this.fnexpr.Evaluate(context);

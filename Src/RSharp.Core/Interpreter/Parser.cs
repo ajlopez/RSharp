@@ -98,6 +98,15 @@
                 exprs.Add(this.ParseExpression());
             }
 
+            if (expr is NameExpression && ((NameExpression)expr).Name == "function") {
+                IList<string> args = new List<string>();
+
+                foreach (var nexpr in exprs)
+                    args.Add(((NameExpression)nexpr).Name);
+
+                return new FunctionExpression(args, this.ParseExpression());
+            }
+
             return new CallExpression(expr, exprs);
         }
 
