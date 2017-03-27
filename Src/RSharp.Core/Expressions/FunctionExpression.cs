@@ -12,6 +12,7 @@
 
         public FunctionExpression(IList<string> arguments, IExpression expression)
         {
+            this.arguments = arguments;
             this.expression = expression;
         }
 
