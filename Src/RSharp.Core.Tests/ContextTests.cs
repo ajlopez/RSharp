@@ -26,5 +26,16 @@
 
             Assert.AreEqual(1, context.GetValue("one"));
         }
+
+        [TestMethod]
+        public void SetValueInParentAndGetValueFromChildContext()
+        {
+            var parent = new Context();
+            var context = new Context(parent);
+
+            parent.SetValue("one", 1);
+
+            Assert.AreEqual(1, context.GetValue("one"));
+        }
     }
 }
