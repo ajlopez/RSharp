@@ -51,9 +51,11 @@
         }
 
         [TestMethod]
-        public void NewContextHasNoReturnValue() {
+        public void NewContextHasNoReturnValue()
+        {
             var context = new Context();
 
             Assert.IsFalse(context.HasReturnValue);
+        }
     }
 }

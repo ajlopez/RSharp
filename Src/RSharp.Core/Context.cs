@@ -19,6 +19,8 @@
             this.parent = parent;
         }
 
+        public bool HasReturnValue { get { return false; } }
+
         public void SetValue(string name, object value)
         {
             this.values[name] = value;
@@ -33,11 +35,6 @@
                 return this.parent.GetValue(name);
 
             return null;
-        }
-
-        public bool HasReturnValue()
-        {
-            return false;
         }
     }
 }
