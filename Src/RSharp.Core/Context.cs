@@ -34,5 +34,10 @@
 
             return null;
         }
+
+        public bool HasReturnValue()
+        {
+            return false;
+        }
     }
 }

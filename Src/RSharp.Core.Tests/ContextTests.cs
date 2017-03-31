@@ -49,5 +49,11 @@
 
             Assert.AreEqual(1, context.GetValue("one"));
         }
+
+        [TestMethod]
+        public void NewContextHasNoReturnValue() {
+            var context = new Context();
+
+            Assert.IsFalse(context.HasReturnValue);
     }
 }
