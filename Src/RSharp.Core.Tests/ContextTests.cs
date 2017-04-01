@@ -57,5 +57,16 @@
 
             Assert.IsFalse(context.HasReturnValue);
         }
+
+        [TestMethod]
+        public void SetReturnValue()
+        {
+            var context = new Context();
+
+            context.ReturnValue = 42; 
+
+            Assert.IsTrue(context.HasReturnValue);
+            Assert.AreEqual(42, context.ReturnValue);
+        }
     }
 }

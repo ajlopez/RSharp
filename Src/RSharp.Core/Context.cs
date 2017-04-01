@@ -9,6 +9,8 @@
     {
         private Context parent;
         private IDictionary<string, object> values = new Dictionary<string, object>();
+        private bool hasReturnValue;
+        private object returnValue;
 
         public Context()
         {
@@ -19,7 +21,21 @@
             this.parent = parent;
         }
 
-        public bool HasReturnValue { get { return false; } }
+        public bool HasReturnValue { get { return this.hasReturnValue; } }
+
+        public object ReturnValue
+        {
+            get
+            {
+                return this.returnValue;
+            }
+
+            set
+            {
+                this.returnValue = value;
+                this.hasReturnValue = true;
+            }
+        }
 
         public void SetValue(string name, object value)
         {
