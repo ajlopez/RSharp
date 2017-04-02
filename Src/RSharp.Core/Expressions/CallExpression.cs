@@ -29,7 +29,7 @@
             foreach (var argexpr in this.argexprs)
                 args.Add(argexpr.Evaluate(context));
 
-            return fn.Apply(args);
+            return fn.Apply(context, args);
         }
     }
 }

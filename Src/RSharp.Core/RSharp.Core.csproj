@@ -49,6 +49,7 @@
     <Compile Include="Expressions\FunctionExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
+    <Compile Include="Functions\Return.cs" />
     <Compile Include="Functions\IFunction.cs" />
     <Compile Include="Functions\MakeVector.cs" />
     <Compile Include="Interpreter\LexerException.cs" />

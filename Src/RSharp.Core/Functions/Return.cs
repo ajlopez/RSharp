@@ -6,11 +6,13 @@
     using System.Text;
     using RSharp.Core.Language;
 
-    public class MakeVector : RSharp.Core.Functions.IFunction
+    public class Return : RSharp.Core.Functions.IFunction
     {
         public object Apply(Context context, IList<object> args)
         {
-            return new Vector(args);
+            var value = args[0];
+            context.ReturnValue = value;
+            return value;
         }
     }
 }

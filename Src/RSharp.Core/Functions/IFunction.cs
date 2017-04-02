@@ -5,6 +5,6 @@
 
     public interface IFunction
     {
-        object Apply(IList<object> values);
+        object Apply(Context context, IList<object> values);
     }
 }
