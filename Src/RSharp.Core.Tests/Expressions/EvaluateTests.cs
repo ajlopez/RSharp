@@ -59,6 +59,25 @@
         }
 
         [TestMethod]
+        public void EvaluateReturnCallExpression()
+        {
+            Context context = new Context();
+
+            context.SetValue("one", 1);
+            context.SetValue("return", new Return());
+
+            var expr = new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("one") });
+
+            var result = expr.Evaluate(context);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
+
+            Assert.IsTrue(context.HasReturnValue);
+            Assert.AreEqual(1, context.ReturnValue);
+        }
+
+        [TestMethod]
         public void EvaluateAddExpressionWithTwoIntegers()
         {
             Context context = new Context();
