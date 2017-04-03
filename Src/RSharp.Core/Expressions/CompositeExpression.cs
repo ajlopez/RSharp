@@ -18,7 +18,7 @@
 
         public object Evaluate(Context context)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

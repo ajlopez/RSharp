@@ -48,6 +48,7 @@
     <Compile Include="ContextTests.cs" />
     <Compile Include="EvaluateTests.cs" />
     <Compile Include="Expressions\EvaluateTests.cs" />
+    <Compile Include="Expressions\CompositeExpressionTests.cs" />
     <Compile Include="Functions\ReturnTests.cs" />
     <Compile Include="Functions\MakeVectorTests.cs" />
     <Compile Include="Interpreter\LexerTests.cs" />
