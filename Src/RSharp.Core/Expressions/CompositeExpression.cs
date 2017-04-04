@@ -18,6 +18,14 @@
 
         public object Evaluate(Context context)
         {
+            foreach (var expr in this.expressions)
+            {
+                expr.Evaluate(context);
+
+                if (context.HasReturnValue)
+                    return context.ReturnValue;
+            }
+
             return null;
         }
     }
