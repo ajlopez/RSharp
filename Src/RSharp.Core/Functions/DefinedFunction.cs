@@ -1,17 +1,17 @@
-﻿namespace RSharp.Core.Expressions
+﻿namespace RSharp.Core.Functions
 {
-    using RSharp.Core.Functions;
+    using RSharp.Core.Expressions;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class FunctionExpression : IExpression
+    public class DefinedFunction : IFunction
     {
         private IList<string> arguments;
         private IExpression expression;
 
-        public FunctionExpression(IList<string> arguments, IExpression expression)
+        public DefinedFunction(IList<string> arguments, IExpression expression)
         {
             this.arguments = arguments;
             this.expression = expression;
@@ -21,9 +21,9 @@
 
         public IExpression Expression { get { return this.expression; } }
 
-        public object Evaluate(Context context)
+        public object Apply(Context context, IList<object> values)
         {
-            return new DefinedFunction(this.arguments, this.expression);
+            throw new NotImplementedException();
         }
     }
 }
