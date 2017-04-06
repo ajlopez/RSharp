@@ -52,6 +52,7 @@
     <Compile Include="Expressions\CompositeExpressionTests.cs" />
     <Compile Include="Functions\ReturnTests.cs" />
     <Compile Include="Functions\MakeVectorTests.cs" />
+    <Compile Include="Functions\DefinedFunctionTests.cs" />
     <Compile Include="Interpreter\LexerTests.cs" />
     <Compile Include="Interpreter\ParserTests.cs" />
     <Compile Include="Language\VectorTests.cs" />

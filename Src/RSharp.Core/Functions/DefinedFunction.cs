@@ -23,7 +23,13 @@
 
         public object Apply(Context context, IList<object> values)
         {
-            throw new NotImplementedException();
+            Context fctx = new Context(context);
+
+            for (int k = 0; k < this.arguments.Count; k++)
+                fctx.SetValue(this.arguments[k], values[k]);
+
+            return null;
+            //return this.expression.Evaluate(fctx);
         }
     }
 }
