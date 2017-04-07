@@ -28,8 +28,8 @@
             for (int k = 0; k < this.arguments.Count; k++)
                 fctx.SetValue(this.arguments[k], values[k]);
 
-            return null;
-            //return this.expression.Evaluate(fctx);
+            return this.expression.Evaluate(fctx);
         }
     }
 }
+ 

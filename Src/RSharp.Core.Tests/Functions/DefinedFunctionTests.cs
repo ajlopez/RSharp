@@ -19,7 +19,7 @@
 
             DefinedFunction dfunc = new DefinedFunction(arguments, body);
 
-            var result = dfunc.Apply(null, new object[] { 42 });
+            var result = dfunc.Apply(context, new object[] { 42 });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(42, result);
