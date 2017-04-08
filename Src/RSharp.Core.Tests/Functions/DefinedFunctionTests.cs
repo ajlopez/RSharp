@@ -10,16 +10,16 @@
     public class DefinedFunctionTests
     {
         [TestMethod]
-        public void EvaluateUsingArgument()
+        public void EvaluateUsingArgumentAndOriginalContext()
         {
             Context context = new Context();
             context.SetValue("return", new Return());
             IList<string> arguments = new string[] { "a" };
             IExpression body = new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("a") });
 
-            DefinedFunction dfunc = new DefinedFunction(arguments, body);
+            DefinedFunction dfunc = new DefinedFunction(context, arguments, body);
 
-            var result = dfunc.Apply(context, new object[] { 42 });
+            var result = dfunc.Apply(null, new object[] { 42 });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(42, result);

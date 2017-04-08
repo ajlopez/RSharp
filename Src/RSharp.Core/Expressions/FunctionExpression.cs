@@ -17,13 +17,15 @@
             this.expression = expression;
         }
 
+        public Context Context { get { return this.Context; } }
+
         public IList<string> Arguments { get { return this.arguments; } }
 
         public IExpression Expression { get { return this.expression; } }
 
         public object Evaluate(Context context)
         {
-            return new DefinedFunction(this.arguments, this.expression);
+            return new DefinedFunction(context, this.arguments, this.expression);
         }
     }
 }
