@@ -23,6 +23,8 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(42, result);
+
+            Assert.AreSame(context, dfunc.Context);
         }
     }
 }

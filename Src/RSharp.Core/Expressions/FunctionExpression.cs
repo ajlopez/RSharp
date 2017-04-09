@@ -17,8 +17,6 @@
             this.expression = expression;
         }
 
-        public Context Context { get { return this.Context; } }
-
         public IList<string> Arguments { get { return this.arguments; } }
 
         public IExpression Expression { get { return this.expression; } }

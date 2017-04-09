@@ -23,6 +23,8 @@
 
         public IExpression Expression { get { return this.expression; } }
 
+        public Context Context { get { return this.context; } }
+
         public object Apply(Context ctx, IList<object> values)
         {
             Context fctx = new Context(this.context);
