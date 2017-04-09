@@ -222,6 +222,23 @@
             Assert.IsNull(lexer.NextToken());
         }
 
+
+        [TestMethod]
+        public void UnexpectedCharacter()
+        {
+            Lexer lexer = new Lexer("@");
+
+            try
+            {
+                lexer.NextToken();
+                Assert.Fail();
+            }
+            catch (LexerException ex)
+            {
+                Assert.AreEqual("Unexpected '@'", ex.Message);
+            }
+        }
+
         private static void IsToken(Token token, TokenType type, string value)
         {
             Assert.IsNotNull(token);
