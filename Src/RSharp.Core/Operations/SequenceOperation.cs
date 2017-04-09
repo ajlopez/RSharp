@@ -13,7 +13,7 @@
             int from = (int)left;
             int to = (int)right;
 
-            int []values = new int[to - from + 1];
+            int[] values = new int[to - from + 1];
 
             for (int k = 0; k < values.Length; k++)
                 values[k] = k + from;

@@ -1,10 +1,10 @@
 ﻿namespace RSharp.Core.Expressions
 {
-    using RSharp.Core.Functions;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using RSharp.Core.Functions;
 
     public class FunctionExpression : IExpression
     {

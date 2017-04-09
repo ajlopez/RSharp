@@ -222,7 +222,6 @@
             Assert.IsNull(lexer.NextToken());
         }
 
-
         [TestMethod]
         public void UnexpectedCharacter()
         {

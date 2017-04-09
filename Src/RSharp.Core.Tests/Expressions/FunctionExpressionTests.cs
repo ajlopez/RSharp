@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RSharp.Core.Expressions;
     using RSharp.Core.Functions;
-    using System.Collections.Generic;
 
     [TestClass]
     public class FunctionExpressionTests

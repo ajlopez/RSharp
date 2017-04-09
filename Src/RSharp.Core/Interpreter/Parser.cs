@@ -98,7 +98,8 @@
                 exprs.Add(this.ParseExpression());
             }
 
-            if (expr is NameExpression && ((NameExpression)expr).Name == "function") {
+            if (expr is NameExpression && ((NameExpression)expr).Name == "function") 
+            {
                 IList<string> args = new List<string>();
 
                 foreach (var nexpr in exprs)
