@@ -302,6 +302,22 @@
         }
 
         [TestMethod]
+        public void ParseInverseAssignExpressionWithoutNameRaiseException()
+        {
+            var parser = new Parser("1 -> ");
+
+            try
+            {
+                parser.ParseExpression();
+                Assert.Fail();
+            }
+            catch (ParserException ex)
+            {
+                Assert.AreEqual("Name expected", ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void ParseCompositeExpression()
         {
             var parser = new Parser("{ a <- 1 b <- 42 }");
