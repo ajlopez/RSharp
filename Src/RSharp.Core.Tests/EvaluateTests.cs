@@ -98,6 +98,15 @@ using RSharp.Core.Functions;
             Assert.IsInstanceOfType(result, typeof(DefinedFunction));
         }
 
+        [TestMethod]
+        public void EvaluateCallFunctionExpression()
+        {
+            var result = Evaluate("function (a) return(a+1) (1)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(2, typeof(DefinedFunction));
+        }
+
         private static object Evaluate(string text)
         {
             Machine machine = new Machine();
