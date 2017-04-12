@@ -8,6 +8,7 @@
     using RSharp.Core.Expressions;
     using RSharp.Core.Interpreter;
     using RSharp.Core.Language;
+using RSharp.Core.Functions;
 
     [TestClass]
     public class EvaluateTests
@@ -86,6 +87,15 @@
 
             for (int k = 1; k <= 20; k++)
                 Assert.AreEqual(k, vector[k - 1]);
+        }
+
+        [TestMethod]
+        public void EvaluateFunctionExpression()
+        {
+            var result = Evaluate("function (a) return(a+1)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(DefinedFunction));
         }
 
         private static object Evaluate(string text)
