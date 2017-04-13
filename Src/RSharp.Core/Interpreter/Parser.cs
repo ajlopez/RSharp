@@ -98,16 +98,6 @@
                 exprs.Add(this.ParseExpression());
             }
 
-            if (expr is NameExpression && ((NameExpression)expr).Name == "function") 
-            {
-                IList<string> args = new List<string>();
-
-                foreach (var nexpr in exprs)
-                    args.Add(((NameExpression)nexpr).Name);
-
-                return new FunctionExpression(args, this.ParseExpression());
-            }
-
             return new CallExpression(expr, exprs);
         }
 
@@ -136,7 +126,29 @@
             }
 
             if (token.Type == TokenType.Name)
-                return new NameExpression(token.Value);
+            {
+                if (token.Value != "function")
+                    return new NameExpression(token.Value);
+
+                this.NextToken(TokenType.Delimiter, "(");
+
+                IList<IExpression> exprs = new List<IExpression>();
+
+                while (!this.TryNextToken(TokenType.Delimiter, ")"))
+                {
+                    if (exprs.Count > 0)
+                        this.NextToken(TokenType.Delimiter, ",");
+
+                    exprs.Add(this.ParseExpression());
+                }
+
+                IList<string> args = new List<string>();
+
+                foreach (var nexpr in exprs)
+                    args.Add(((NameExpression)nexpr).Name);
+
+                return new FunctionExpression(args, this.ParseExpression());
+            }
 
             if (token.Type == TokenType.Integer)
                 return new ConstantExpression(int.Parse(token.Value, CultureInfo.InvariantCulture));
