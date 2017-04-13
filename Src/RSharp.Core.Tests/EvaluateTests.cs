@@ -104,7 +104,7 @@ using RSharp.Core.Functions;
             var result = Evaluate("function (a) return(a+1) (1)");
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(2, typeof(DefinedFunction));
+            Assert.AreEqual(2, result);
         }
 
         private static object Evaluate(string text)

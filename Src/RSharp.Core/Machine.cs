@@ -15,6 +15,7 @@
         {
             this.rootcontext = new Context();
             this.rootcontext.SetValue("c", new MakeVector());
+            this.rootcontext.SetValue("return", new Return());
         }
 
         public object Evaluate(IExpression expr)
