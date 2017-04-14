@@ -30,6 +30,15 @@ using RSharp.Core.Functions;
         }
 
         [TestMethod]
+        public void EvaluateMakeVectorGetElement()
+        {
+            var result = Evaluate("c(1,2,3)[1]");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
         public void EvaluateSimpleArithmeticExpressions()
         {
             Assert.AreEqual(3, Evaluate("1 + 2"));

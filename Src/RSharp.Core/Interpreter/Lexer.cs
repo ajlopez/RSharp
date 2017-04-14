@@ -9,7 +9,7 @@
     public class Lexer
     {
         private static string[] operators = new string[] { "+", "-", "*", "/", "<-", "->", "^", ":", ">", "<", "==", "<=", ">=", "%%" };
-        private static char[] delimiters = new char[] { ',', '(', ')', ';', '{', '}' };
+        private static char[] delimiters = new char[] { ',', '(', ')', ';', '{', '}', '[', ']' };
 
         private Stack<int> chars = new Stack<int>();
         private TextReader reader;

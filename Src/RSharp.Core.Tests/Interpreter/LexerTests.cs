@@ -110,6 +110,17 @@
         }
 
         [TestMethod]
+        public void GetSquareBracketsAsDelimiters()
+        {
+            Lexer lexer = new Lexer("[]");
+
+            IsToken(lexer.NextToken(), TokenType.Delimiter, "[");
+            IsToken(lexer.NextToken(), TokenType.Delimiter, "]");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetNewLine()
         {
             Lexer lexer = new Lexer("\n");
