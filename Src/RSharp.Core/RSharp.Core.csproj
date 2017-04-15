@@ -46,6 +46,7 @@
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\CallExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
+    <Compile Include="Expressions\ArrayAccessExpression.cs" />
     <Compile Include="Expressions\FunctionExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
