@@ -203,6 +203,27 @@
         }
 
         [TestMethod]
+        public void ParseAndEvaluateArrayAccessExpression()
+        {
+            var parser = new Parser("c(1,2,3)[1]");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(ArrayAccessExpression));
+
+            Context context = new Context();
+            context.SetValue("c", new MakeVector());
+
+            var result = expr.Evaluate(context);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void RaiseExpectedComma()
         {
             var parser = new Parser("c(1 2 3)");

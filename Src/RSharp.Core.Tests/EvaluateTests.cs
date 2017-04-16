@@ -110,7 +110,7 @@ using RSharp.Core.Functions;
         [TestMethod]
         public void EvaluateCallFunctionExpression()
         {
-            var result = Evaluate("function (a) return(a+1) (1)");
+            var result = Evaluate("function (a) { return(a+1) } (1)");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result);

@@ -85,20 +85,46 @@
             if (expr == null)
                 return null;
 
-            if (!this.TryNextToken(TokenType.Delimiter, "("))
-                return expr;
-
-            IList<IExpression> exprs = new List<IExpression>();
-
-            while (!this.TryNextToken(TokenType.Delimiter, ")"))
+            while (true)
             {
-                if (exprs.Count > 0)
-                    this.NextToken(TokenType.Delimiter, ",");
+                while (this.TryNextToken(TokenType.Delimiter, "("))
+                {
+                    IList<IExpression> exprs = new List<IExpression>();
 
-                exprs.Add(this.ParseExpression());
+                    while (!this.TryNextToken(TokenType.Delimiter, ")"))
+                    {
+                        if (exprs.Count > 0)
+                            this.NextToken(TokenType.Delimiter, ",");
+
+                        exprs.Add(this.ParseExpression());
+                    }
+
+                    expr = new CallExpression(expr, exprs);
+                    
+                    continue;
+                }
+
+                while (this.TryNextToken(TokenType.Delimiter, "["))
+                {
+                    IList<IExpression> exprs = new List<IExpression>();
+
+                    while (!this.TryNextToken(TokenType.Delimiter, "]"))
+                    {
+                        if (exprs.Count > 0)
+                            this.NextToken(TokenType.Delimiter, ",");
+
+                        exprs.Add(this.ParseExpression());
+                    }
+
+                    expr = new ArrayAccessExpression(expr, exprs);
+
+                    continue;
+                }
+
+                break;
             }
 
-            return new CallExpression(expr, exprs);
+            return expr;
         }
 
         private IExpression ParseSimpleTerm()
