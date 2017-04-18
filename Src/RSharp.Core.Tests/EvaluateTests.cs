@@ -99,6 +99,16 @@ using RSharp.Core.Functions;
         }
 
         [TestMethod]
+        public void EvaluateAssignment()
+        {
+            var machine = new Machine();
+            var result = Evaluate("x <- 42");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(42, result);
+        }
+
+        [TestMethod]
         public void EvaluateFunctionExpression()
         {
             var result = Evaluate("function (a) return(a+1)");
