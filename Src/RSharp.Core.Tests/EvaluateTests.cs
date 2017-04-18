@@ -118,7 +118,11 @@ using RSharp.Core.Functions;
 
         private static object Evaluate(string text)
         {
-            Machine machine = new Machine();
+            return Evaluate(new Machine(), text);
+        }
+
+        private static object Evaluate(Machine machine, string text)
+        {
             Parser parser = new Parser(text);
             IExpression expr = parser.ParseExpression();
 
