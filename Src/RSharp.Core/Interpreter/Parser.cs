@@ -152,10 +152,10 @@
             }
 
             if (token.Type == TokenType.Name)
-                if (token.Value != "function")
-                    return new NameExpression(token.Value);
-                else
+                if (token.Value == "function")
                     return ParseFunctionDefinition();
+                else
+                    return new NameExpression(token.Value);
 
             if (token.Type == TokenType.Integer)
                 return new ConstantExpression(int.Parse(token.Value, CultureInfo.InvariantCulture));
