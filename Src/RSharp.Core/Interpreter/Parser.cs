@@ -85,6 +85,9 @@
             if (expr == null)
                 return null;
 
+            if (expr is CompositeExpression)
+                return expr;
+
             while (true)
             {
                 while (this.TryNextToken(TokenType.Delimiter, "("))
