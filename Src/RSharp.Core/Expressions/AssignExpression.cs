@@ -24,7 +24,7 @@
         {
             var value = this.expression.Evaluate(context);
             context.SetValue(this.name, value);
-            return null;
+            return value;
         }
     }
 }

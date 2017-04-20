@@ -18,6 +18,8 @@
             this.rootcontext.SetValue("return", new Return());
         }
 
+        public Context Context { get { return this.rootcontext; } }
+
         public object Evaluate(IExpression expr)
         {
             return expr.Evaluate(this.rootcontext);

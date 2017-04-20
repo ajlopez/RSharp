@@ -102,10 +102,11 @@ using RSharp.Core.Functions;
         public void EvaluateAssignment()
         {
             var machine = new Machine();
-            var result = Evaluate("x <- 42");
+            var result = Evaluate(machine, "x <- 42");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(42, result);
+            Assert.AreEqual(42, machine.Context.GetValue("x"));
         }
 
         [TestMethod]
