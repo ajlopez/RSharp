@@ -134,7 +134,10 @@
             Assert.AreEqual("one", expr.Name);
             Assert.IsNotNull(expr.Expression);
 
-            Assert.IsNull(expr.Evaluate(context));
+            var result = expr.Evaluate(context);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
 
             Assert.AreEqual(1, context.GetValue("one"));
         }
