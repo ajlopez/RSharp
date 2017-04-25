@@ -8,6 +8,7 @@
     using RSharp.Core.Expressions;
     using RSharp.Core.Interpreter;
     using RSharp.Core.Language;
+    using RSharp.Core.Functions;
 
     [TestClass]
     public class MachineTests
@@ -30,6 +31,20 @@
             Assert.AreEqual(1, vector[0]);
             Assert.AreEqual(2, vector[1]);
             Assert.AreEqual(3, vector[2]);
+        }
+
+        [TestMethod]
+        public void InitialContext()
+        {
+            Machine machine = new Machine();
+
+            var context = machine.Context;
+
+            Assert.IsNotNull(context);
+            Assert.IsNotNull(context.GetValue("return"));
+            Assert.IsInstanceOfType(context.GetValue("return"), typeof(IFunction));
+            Assert.IsNotNull(context.GetValue("c"));
+            Assert.IsInstanceOfType(context.GetValue("c"), typeof(IFunction));
         }
     }
 }
