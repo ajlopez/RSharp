@@ -69,8 +69,10 @@
                     expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "*")
                     expr = new BinaryExpression(new MultiplyOperation(), expr, this.ParseBinaryExpression(level + 1));
-                else
+                else if (token.Value == "/")
                     expr = new BinaryExpression(new DivideOperation(), expr, this.ParseBinaryExpression(level + 1));
+                else
+                    throw new ParserException(string.Format("Unknow binary operator {0}", token.Value));
             }
 
             this.PushToken(token);
