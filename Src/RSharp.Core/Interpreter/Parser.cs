@@ -142,18 +142,21 @@
             if (token == null)
                 return null;
 
-            if (token.Type == TokenType.Delimiter && token.Value == "(")
+            if (token.Type == TokenType.Delimiter)
             {
-                var expr = this.ParseExpression();
-                this.NextToken(TokenType.Delimiter, ")");
-                return expr;
-            }
+                if (token.Value == "(")
+                {
+                    var expr = this.ParseExpression();
+                    this.NextToken(TokenType.Delimiter, ")");
+                    return expr;
+                }
 
-            if (token.Type == TokenType.Delimiter && token.Value == "{")
-            {
-                var expr = this.ParseCompositeExpression();
-                this.NextToken(TokenType.Delimiter, "}");
-                return expr;
+                if (token.Value == "{")
+                {
+                    var expr = this.ParseCompositeExpression();
+                    this.NextToken(TokenType.Delimiter, "}");
+                    return expr;
+                }
             }
 
             if (token.Type == TokenType.Name)
