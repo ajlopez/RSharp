@@ -212,6 +212,14 @@
             Assert.IsNotNull(expr);
             Assert.IsInstanceOfType(expr, typeof(ArrayAccessExpression));
 
+            var aexpr = (ArrayAccessExpression)expr;
+
+            Assert.IsNotNull(aexpr.ArrayExpression);
+            Assert.IsInstanceOfType(aexpr.ArrayExpression, typeof(CallExpression));
+            Assert.IsNotNull(aexpr.ArgumentExpressions);
+            Assert.AreEqual(1, aexpr.ArgumentExpressions.Count);
+            Assert.IsInstanceOfType(aexpr.ArgumentExpressions[0], typeof(ConstantExpression));
+
             Context context = new Context();
             context.SetValue("c", new MakeVector());
 
