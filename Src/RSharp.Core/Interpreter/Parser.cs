@@ -161,7 +161,7 @@
 
             if (token.Type == TokenType.Name)
                 if (token.Value == "function")
-                    return ParseFunctionDefinition();
+                    return this.ParseFunctionDefinition();
                 else
                     return new NameExpression(token.Value);
 

@@ -6,9 +6,9 @@
     using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RSharp.Core.Expressions;
+    using RSharp.Core.Functions;
     using RSharp.Core.Interpreter;
     using RSharp.Core.Language;
-    using RSharp.Core.Functions;
 
     [TestClass]
     public class MachineTests
