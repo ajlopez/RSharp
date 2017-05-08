@@ -93,21 +93,7 @@
             while (true)
             {
                 while (this.TryNextToken(TokenType.Delimiter, "("))
-                {
-                    IList<IExpression> exprs = new List<IExpression>();
-
-                    while (!this.TryNextToken(TokenType.Delimiter, ")"))
-                    {
-                        if (exprs.Count > 0)
-                            this.NextToken(TokenType.Delimiter, ",");
-
-                        exprs.Add(this.ParseExpression());
-                    }
-
-                    expr = new CallExpression(expr, exprs);
-                    
-                    continue;
-                }
+                    expr = this.ParseCallExpression(expr);
 
                 while (this.TryNextToken(TokenType.Delimiter, "["))
                 {
@@ -128,6 +114,23 @@
 
                 break;
             }
+
+            return expr;
+        }
+
+        private IExpression ParseCallExpression(IExpression expr)
+        {
+            IList<IExpression> exprs = new List<IExpression>();
+
+            while (!this.TryNextToken(TokenType.Delimiter, ")"))
+            {
+                if (exprs.Count > 0)
+                    this.NextToken(TokenType.Delimiter, ",");
+
+                exprs.Add(this.ParseExpression());
+            }
+
+            expr = new CallExpression(expr, exprs);
 
             return expr;
         }
