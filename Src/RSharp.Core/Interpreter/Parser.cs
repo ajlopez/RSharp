@@ -96,26 +96,27 @@
                     expr = this.ParseCallExpression(expr);
 
                 while (this.TryNextToken(TokenType.Delimiter, "["))
-                {
-                    IList<IExpression> exprs = new List<IExpression>();
-
-                    while (!this.TryNextToken(TokenType.Delimiter, "]"))
-                    {
-                        if (exprs.Count > 0)
-                            this.NextToken(TokenType.Delimiter, ",");
-
-                        exprs.Add(this.ParseExpression());
-                    }
-
-                    expr = new ArrayAccessExpression(expr, exprs);
-
-                    continue;
-                }
+                    expr = this.ParseArrayAccessExpression(expr);
 
                 break;
             }
 
             return expr;
+        }
+
+        private IExpression ParseArrayAccessExpression(IExpression expr)
+        {
+            IList<IExpression> exprs = new List<IExpression>();
+
+            while (!this.TryNextToken(TokenType.Delimiter, "]"))
+            {
+                if (exprs.Count > 0)
+                    this.NextToken(TokenType.Delimiter, ",");
+
+                exprs.Add(this.ParseExpression());
+            }
+
+            return new ArrayAccessExpression(expr, exprs);
         }
 
         private IExpression ParseCallExpression(IExpression expr)
