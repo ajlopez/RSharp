@@ -90,16 +90,11 @@
             if (expr is CompositeExpression)
                 return expr;
 
-            while (true)
-            {
-                while (this.TryNextToken(TokenType.Delimiter, "("))
-                    expr = this.ParseCallExpression(expr);
+            while (this.TryNextToken(TokenType.Delimiter, "("))
+                expr = this.ParseCallExpression(expr);
 
-                while (this.TryNextToken(TokenType.Delimiter, "["))
-                    expr = this.ParseArrayAccessExpression(expr);
-
-                break;
-            }
+            while (this.TryNextToken(TokenType.Delimiter, "["))
+                expr = this.ParseArrayAccessExpression(expr);
 
             return expr;
         }
