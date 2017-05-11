@@ -9,20 +9,20 @@
 
     public class Machine
     {
-        private Context rootcontext;
+        private Context context;
 
         public Machine()
         {
-            this.rootcontext = new Context();
-            this.rootcontext.SetValue("c", new MakeVector());
-            this.rootcontext.SetValue("return", new Return());
+            this.context = new Context();
+            this.context.SetValue("c", new MakeVector());
+            this.context.SetValue("return", new Return());
         }
 
-        public Context Context { get { return this.rootcontext; } }
+        public Context Context { get { return this.context; } }
 
         public object Evaluate(IExpression expr)
         {
-            return expr.Evaluate(this.rootcontext);
+            return expr.Evaluate(this.context);
         }
     }
 }
