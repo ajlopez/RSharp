@@ -10,7 +10,12 @@
     {
         public object Apply(Context context, IList<object> args)
         {
-            return ((Vector)args[0]).Length;
+            var arg = args[0];
+
+            if (arg is Vector)
+                return ((Vector)arg).Length;
+ 
+            return ((String)arg).Length;
         }
     }
 }

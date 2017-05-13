@@ -19,5 +19,16 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result);
         }
+
+        [TestMethod]
+        public void LengthOfAnString()
+        {
+            Length fn = new Length();
+
+            var result = fn.Apply(null, new object[] { "hello" });
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(5, result);
+        }
     }
 }
