@@ -61,6 +61,7 @@
     <Compile Include="Interpreter\ParserException.cs" />
     <Compile Include="Interpreter\Token.cs" />
     <Compile Include="Interpreter\TokenType.cs" />
+    <Compile Include="Language\Matrix.cs" />
     <Compile Include="Language\Vector.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Operations\AddOperation.cs" />

@@ -57,6 +57,7 @@
     <Compile Include="Functions\LengthTests.cs" />
     <Compile Include="Interpreter\LexerTests.cs" />
     <Compile Include="Interpreter\ParserTests.cs" />
+    <Compile Include="Language\MatrixTests.cs" />
     <Compile Include="Language\VectorTests.cs" />
     <Compile Include="MachineTests.cs" />
     <Compile Include="Operations\OperationTests.cs" />
