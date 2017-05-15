@@ -16,6 +16,7 @@
             this.context = new Context();
             this.context.SetValue("c", new MakeVector());
             this.context.SetValue("return", new Return());
+            this.context.SetValue("length", new Length());
         }
 
         public Context Context { get { return this.context; } }

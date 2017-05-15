@@ -41,12 +41,18 @@
             var context = machine.Context;
 
             Assert.IsNotNull(context);
+            
             Assert.IsNotNull(context.GetValue("return"));
             Assert.IsInstanceOfType(context.GetValue("return"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("return"), typeof(Return));
+            
             Assert.IsNotNull(context.GetValue("c"));
             Assert.IsInstanceOfType(context.GetValue("c"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("c"), typeof(MakeVector));
+
+            Assert.IsNotNull(context.GetValue("length"));
+            Assert.IsInstanceOfType(context.GetValue("length"), typeof(IFunction));
+            Assert.IsInstanceOfType(context.GetValue("length"), typeof(Length));
         }
     }
 }
