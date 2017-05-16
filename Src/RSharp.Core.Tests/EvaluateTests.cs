@@ -39,6 +39,15 @@
         }
 
         [TestMethod]
+        public void EvaluateVectorLength()
+        {
+            var result = Evaluate("length(c(1,2,3))");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
         public void EvaluateSimpleArithmeticExpressions()
         {
             Assert.AreEqual(3, Evaluate("1 + 2"));
