@@ -48,6 +48,15 @@
         }
 
         [TestMethod]
+        public void EvaluateStringLength()
+        {
+            var result = Evaluate("length(\"foobar\")");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
         public void EvaluateSimpleArithmeticExpressions()
         {
             Assert.AreEqual(3, Evaluate("1 + 2"));
