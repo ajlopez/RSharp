@@ -67,6 +67,19 @@
         }
 
         [TestMethod]
+        public void ParseStringExpression()
+        {
+            var parser = new Parser("\"foo\"");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, "foo");
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+
+        [TestMethod]
         public void ParseNameExpression()
         {
             var parser = new Parser("foo");
