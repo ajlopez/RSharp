@@ -55,6 +55,7 @@
     <Compile Include="Functions\Return.cs" />
     <Compile Include="Functions\IFunction.cs" />
     <Compile Include="Functions\MakeVector.cs" />
+    <Compile Include="Functions\Substring.cs" />
     <Compile Include="Interpreter\LexerException.cs" />
     <Compile Include="Interpreter\Lexer.cs" />
     <Compile Include="Interpreter\Parser.cs" />

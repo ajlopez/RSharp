@@ -55,6 +55,7 @@
     <Compile Include="Functions\MakeVectorTests.cs" />
     <Compile Include="Functions\DefinedFunctionTests.cs" />
     <Compile Include="Functions\LengthTests.cs" />
+    <Compile Include="Functions\SubstringTests.cs" />
     <Compile Include="Interpreter\LexerTests.cs" />
     <Compile Include="Interpreter\ParserTests.cs" />
     <Compile Include="Language\MatrixTests.cs" />
