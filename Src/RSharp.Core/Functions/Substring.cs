@@ -9,7 +9,12 @@
     {
         public object Apply(Context context, IList<object> args)
         {
-            return null;
+            string str = (string)args[0];
+            
+            int from = (int)args[1];
+            int to = (int)args[2];
+
+            return str.Substring(from - 1, to - from + 1);
         }
     }
 }
