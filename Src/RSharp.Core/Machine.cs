@@ -17,6 +17,7 @@
             this.context.SetValue("c", new MakeVector());
             this.context.SetValue("return", new Return());
             this.context.SetValue("length", new Length());
+            this.context.SetValue("substring", new Substring());
         }
 
         public Context Context { get { return this.context; } }

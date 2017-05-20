@@ -53,6 +53,10 @@
             Assert.IsNotNull(context.GetValue("length"));
             Assert.IsInstanceOfType(context.GetValue("length"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("length"), typeof(Length));
+
+            Assert.IsNotNull(context.GetValue("substring"));
+            Assert.IsInstanceOfType(context.GetValue("substring"), typeof(IFunction));
+            Assert.IsInstanceOfType(context.GetValue("substring"), typeof(Substring));
         }
     }
 }
