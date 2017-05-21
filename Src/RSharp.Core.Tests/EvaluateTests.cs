@@ -57,6 +57,15 @@
         }
 
         [TestMethod]
+        public void EvaluateSubstring()
+        {
+            var result = Evaluate("substring(\"Equator\", 3, 5)");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("uat", result);
+        }
+
+        [TestMethod]
         public void EvaluateSimpleArithmeticExpressions()
         {
             Assert.AreEqual(3, Evaluate("1 + 2"));
