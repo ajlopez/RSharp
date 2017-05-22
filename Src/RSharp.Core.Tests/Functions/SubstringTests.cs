@@ -5,7 +5,7 @@
     using RSharp.Core.Functions;
 
     [TestClass]
-    public class SybstringTests
+    public class SubstringTests
     {
         [TestMethod]
         public void SubstringTest()
