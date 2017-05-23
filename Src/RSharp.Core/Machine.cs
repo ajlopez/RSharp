@@ -18,6 +18,7 @@
             this.context.SetValue("return", new Return());
             this.context.SetValue("length", new Length());
             this.context.SetValue("substring", new Substring());
+            this.context.SetValue("paste", new Paste());
         }
 
         public Context Context { get { return this.context; } }

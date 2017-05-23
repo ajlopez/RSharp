@@ -57,6 +57,10 @@
             Assert.IsNotNull(context.GetValue("substring"));
             Assert.IsInstanceOfType(context.GetValue("substring"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("substring"), typeof(Substring));
+
+            Assert.IsNotNull(context.GetValue("paste"));
+            Assert.IsInstanceOfType(context.GetValue("paste"), typeof(IFunction));
+            Assert.IsInstanceOfType(context.GetValue("paste"), typeof(Paste));
         }
     }
 }
