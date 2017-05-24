@@ -66,6 +66,15 @@
         }
 
         [TestMethod]
+        public void EvaluatePaste()
+        {
+            var result = Evaluate("paste(\"foo\", \"bar\")");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("foo bar", result);
+        }
+
+        [TestMethod]
         public void EvaluateSimpleArithmeticExpressions()
         {
             Assert.AreEqual(3, Evaluate("1 + 2"));
