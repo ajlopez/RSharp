@@ -51,6 +51,7 @@
     <Compile Include="Expressions\FunctionExpressionTests.cs" />
     <Compile Include="Expressions\EvaluateTests.cs" />
     <Compile Include="Expressions\CompositeExpressionTests.cs" />
+    <Compile Include="Functions\NCharTests.cs" />
     <Compile Include="Functions\PasteTests.cs" />
     <Compile Include="Functions\ReturnTests.cs" />
     <Compile Include="Functions\MakeVectorTests.cs" />

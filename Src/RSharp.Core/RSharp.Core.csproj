@@ -50,6 +50,7 @@
     <Compile Include="Expressions\FunctionExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
+    <Compile Include="Functions\NChar.cs" />
     <Compile Include="Functions\DefinedFunction.cs" />
     <Compile Include="Functions\Length.cs" />
     <Compile Include="Functions\Paste.cs" />
