@@ -61,6 +61,10 @@
             Assert.IsNotNull(context.GetValue("paste"));
             Assert.IsInstanceOfType(context.GetValue("paste"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("paste"), typeof(Paste));
+
+            Assert.IsNotNull(context.GetValue("nchar"));
+            Assert.IsInstanceOfType(context.GetValue("nchar"), typeof(IFunction));
+            Assert.IsInstanceOfType(context.GetValue("nchar"), typeof(NChar));
         }
     }
 }
