@@ -57,6 +57,15 @@
         }
 
         [TestMethod]
+        public void EvaluateNChar()
+        {
+            var result = Evaluate("nchar(\"foobar\")");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
         public void EvaluateSubstring()
         {
             var result = Evaluate("substring(\"Equator\", 3, 5)");
