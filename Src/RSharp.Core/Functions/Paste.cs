@@ -10,9 +10,16 @@
         public object Apply(Context context, IList<object> args, IDictionary<string, object> namedvalues)
         {
             string result = (string)args[0];
+            string sep = null;
+
+            if (namedvalues != null)
+                sep = (string)namedvalues["sep"];
+
+            if (sep == null)
+                sep = " ";
 
             for (int k = 1; k < args.Count; k++)
-                result += " " + args[k];
+                result += sep + args[k];
 
             return result;
         }
