@@ -12,7 +12,7 @@
         {
             var fn = new Paste();
 
-            var result = fn.Apply(null, new object[] { "foo" });
+            var result = fn.Apply(null, new object[] { "foo" }, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("foo", result);
@@ -23,7 +23,7 @@
         {
             var fn = new Paste();
 
-            var result = fn.Apply(null, new object[] { "foo", "bar" });
+            var result = fn.Apply(null, new object[] { "foo", "bar" }, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("foo bar", result);

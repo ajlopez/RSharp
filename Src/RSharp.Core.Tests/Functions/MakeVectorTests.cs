@@ -16,7 +16,7 @@
         {
             MakeVector fn = new MakeVector();
 
-            var result = fn.Apply(null, new object[] { 1, 2, 3 });
+            var result = fn.Apply(null, new object[] { 1, 2, 3 }, null);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(Vector));

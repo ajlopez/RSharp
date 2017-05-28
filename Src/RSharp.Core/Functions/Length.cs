@@ -8,7 +8,7 @@
 
     public class Length : IFunction
     {
-        public object Apply(Context context, IList<object> args)
+        public object Apply(Context context, IList<object> args, IDictionary<string, object> namedvalues)
         {
             var arg = args[0];
 

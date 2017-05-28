@@ -25,7 +25,7 @@
 
         public Context Context { get { return this.context; } }
 
-        public object Apply(Context ctx, IList<object> values)
+        public object Apply(Context ctx, IList<object> values, IDictionary<string, object> namedvalues)
         {
             Context fctx = new Context(this.context);
 

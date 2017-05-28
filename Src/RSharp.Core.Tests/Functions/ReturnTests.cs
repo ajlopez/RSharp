@@ -20,7 +20,7 @@
 
             Return fn = new Return();
 
-            var result = fn.Apply(context, new object[] { 42 });
+            var result = fn.Apply(context, new object[] { 42 }, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(42, result);

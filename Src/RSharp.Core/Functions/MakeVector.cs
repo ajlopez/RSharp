@@ -8,7 +8,7 @@
 
     public class MakeVector : RSharp.Core.Functions.IFunction
     {
-        public object Apply(Context context, IList<object> args)
+        public object Apply(Context context, IList<object> args, IDictionary<string, object> namedvalues)
         {
             return new Vector(args);
         }

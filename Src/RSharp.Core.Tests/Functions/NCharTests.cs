@@ -13,7 +13,7 @@
         {
             NChar fn = new NChar();
 
-            var result = fn.Apply(null, new object[] { "hello" });
+            var result = fn.Apply(null, new object[] { "hello" }, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(5, result);

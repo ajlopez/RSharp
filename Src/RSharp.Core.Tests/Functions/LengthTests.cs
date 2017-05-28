@@ -14,7 +14,7 @@
             Length fn = new Length();
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
-            var result = fn.Apply(null, new object[] { v });
+            var result = fn.Apply(null, new object[] { v }, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result);
@@ -25,7 +25,7 @@
         {
             Length fn = new Length();
 
-            var result = fn.Apply(null, new object[] { "hello" });
+            var result = fn.Apply(null, new object[] { "hello" }, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(5, result);
