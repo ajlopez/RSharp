@@ -1,10 +1,10 @@
 ﻿namespace RSharp.Core.Functions
 {
-    using RSharp.Core.Language;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using RSharp.Core.Language;
 
     public class Length : IFunction
     {
@@ -15,7 +15,7 @@
             if (arg is Vector)
                 return ((Vector)arg).Length;
  
-            return ((String)arg).Length;
+            return ((string)arg).Length;
         }
     }
 }

@@ -78,7 +78,6 @@
             Assert.IsNull(parser.ParseExpression());
         }
 
-
         [TestMethod]
         public void ParseNameExpression()
         {

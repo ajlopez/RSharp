@@ -1,9 +1,9 @@
 ﻿namespace RSharp.Core.Tests.Functions
 {
     using System;
+    using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RSharp.Core.Functions;
-    using System.Collections.Generic;
 
     [TestClass]
     public class PasteTests
@@ -35,7 +35,7 @@
         {
             var fn = new Paste();
 
-            var result = fn.Apply(null, new object[] { "foo", "bar" }, new Dictionary<string, object>() { { "sep",  "" } });
+            var result = fn.Apply(null, new object[] { "foo", "bar" }, new Dictionary<string, object>() { { "sep",  string.Empty } });
 
             Assert.IsNotNull(result);
             Assert.AreEqual("foobar", result);

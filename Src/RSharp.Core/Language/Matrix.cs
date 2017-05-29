@@ -14,7 +14,8 @@
             this.elements = new List<Vector>(elements);
         }
 
-        public object this[int index, int index2] {
+        public object this[int index, int index2] 
+        {
             get
             {
                 return this.elements[index][index2];
