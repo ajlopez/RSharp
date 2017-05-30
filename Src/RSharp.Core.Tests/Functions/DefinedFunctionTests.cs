@@ -15,7 +15,7 @@
             Context context = new Context();
             context.SetValue("return", new Return());
             IList<string> arguments = new string[] { "a" };
-            IExpression body = new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("a") });
+            IExpression body = new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("a") }, null);
 
             DefinedFunction dfunc = new DefinedFunction(context, arguments, body);
 

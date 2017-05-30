@@ -126,7 +126,7 @@
                 exprs.Add(this.ParseExpression());
             }
 
-            expr = new CallExpression(expr, exprs);
+            expr = new CallExpression(expr, exprs, null);
 
             return expr;
         }

@@ -24,7 +24,7 @@
             context.SetValue("a", 42);
             context.SetValue("return", new Return());
 
-            CompositeExpression expression = new CompositeExpression(new IExpression[] { new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("a") }) });
+            CompositeExpression expression = new CompositeExpression(new IExpression[] { new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("a") }, null) });
 
             var result = expression.Evaluate(context);
 

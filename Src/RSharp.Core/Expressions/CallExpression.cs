@@ -10,11 +10,13 @@
     {
         private IExpression fnexpr;
         private IList<IExpression> argexprs;
+        private IDictionary<string, IExpression> namedargexprs;
 
-        public CallExpression(IExpression fn, IList<IExpression> argexprs)
+        public CallExpression(IExpression fn, IList<IExpression> argexprs, IDictionary<string, IExpression> namedargexprs)
         {
             this.fnexpr = fn;
             this.argexprs = argexprs;
+            this.namedargexprs = namedargexprs;
         }
 
         public IExpression FunctionExpression { get { return this.fnexpr; } }
@@ -25,11 +27,15 @@
         {
             IFunction fn = (IFunction)this.fnexpr.Evaluate(context);
             IList<object> args = new List<object>();
+            IDictionary<string, object> namedargs = new Dictionary<string, object>();
 
             foreach (var argexpr in this.argexprs)
                 args.Add(argexpr.Evaluate(context));
 
-            return fn.Apply(context, args, null);
+            foreach (var nexpr in this.namedargexprs)
+                namedargs[nexpr.Key] = nexpr.Value.Evaluate(context);
+
+            return fn.Apply(context, args, namedargs);
         }
     }
 }

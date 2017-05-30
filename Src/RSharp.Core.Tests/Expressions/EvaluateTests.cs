@@ -43,7 +43,7 @@
             context.SetValue("three", 3);
             context.SetValue("c", new MakeVector());
 
-            var expr = new CallExpression(new NameExpression("c"), new IExpression[] { new NameExpression("one"), new NameExpression("two"), new NameExpression("three") });
+            var expr = new CallExpression(new NameExpression("c"), new IExpression[] { new NameExpression("one"), new NameExpression("two"), new NameExpression("three") }, null);
 
             var result = expr.Evaluate(context);
 
@@ -66,7 +66,7 @@
             context.SetValue("one", 1);
             context.SetValue("return", new Return());
 
-            var expr = new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("one") });
+            var expr = new CallExpression(new NameExpression("return"), new IExpression[] { new NameExpression("one") }, null);
 
             var result = expr.Evaluate(context);
 
