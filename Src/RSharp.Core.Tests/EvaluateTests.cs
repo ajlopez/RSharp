@@ -84,6 +84,15 @@
         }
 
         [TestMethod]
+        public void EvaluatePasteUsingSep()
+        {
+            var result = Evaluate("paste(\"foo\", \"bar\", sep=\"\")");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("foobar", result);
+        }
+
+        [TestMethod]
         public void EvaluateSimpleArithmeticExpressions()
         {
             Assert.AreEqual(3, Evaluate("1 + 2"));
