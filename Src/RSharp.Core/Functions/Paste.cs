@@ -12,7 +12,7 @@
             string result = (string)args[0];
             string sep = null;
 
-            if (namedvalues != null)
+            if (namedvalues != null && namedvalues.ContainsKey("sep"))
                 sep = (string)namedvalues["sep"];
 
             if (sep == null)

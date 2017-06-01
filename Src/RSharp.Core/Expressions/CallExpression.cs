@@ -32,8 +32,9 @@
             foreach (var argexpr in this.argexprs)
                 args.Add(argexpr.Evaluate(context));
 
-            foreach (var nexpr in this.namedargexprs)
-                namedargs[nexpr.Key] = nexpr.Value.Evaluate(context);
+            if (this.namedargexprs != null)
+                foreach (var nexpr in this.namedargexprs)
+                    namedargs[nexpr.Key] = nexpr.Value.Evaluate(context);
 
             return fn.Apply(context, args, namedargs);
         }
