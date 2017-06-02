@@ -191,6 +191,16 @@
         }
 
         [TestMethod]
+        public void GetEqualAsOperator()
+        {
+            Lexer lexer = new Lexer("=");
+
+            IsToken(lexer.NextToken(), TokenType.Operator, "=");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetLeftArrow()
         {
             Lexer lexer = new Lexer("<-");
