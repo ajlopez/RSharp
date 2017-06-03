@@ -90,6 +90,10 @@
             if (expr is CompositeExpression)
                 return expr;
 
+            if (expr is NameExpression)
+                if (this.TryNextToken(TokenType.Operator, "="))
+                    expr = new NamedArgumentExpression(((NameExpression)expr).Name, this.ParseExpression());
+
             while (this.TryNextToken(TokenType.Delimiter, "("))
                 expr = this.ParseCallExpression(expr);
 

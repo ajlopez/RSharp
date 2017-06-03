@@ -430,6 +430,27 @@
             Assert.IsNull(parser.ParseExpression());
         }
 
+        [TestMethod]
+        public void ParseNamedArgumentExpression()
+        {
+            var parser = new Parser("foo=42");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(NamedArgumentExpression));
+
+            var naexpr = (NamedArgumentExpression)expr;
+
+            Assert.AreEqual("foo", naexpr.Name);
+            Assert.IsNotNull(naexpr.Expression);
+            Assert.IsInstanceOfType(naexpr.Expression, typeof(ConstantExpression));
+
+            var cexpr = (ConstantExpression)naexpr.Expression;
+
+            Assert.AreEqual(42, cexpr.Value);
+        }
+
         private static void IsConstantExpression(IExpression expr, object value)
         {
             Assert.IsNotNull(expr);
