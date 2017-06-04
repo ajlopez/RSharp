@@ -121,16 +121,26 @@
         private IExpression ParseCallExpression(IExpression expr)
         {
             IList<IExpression> exprs = new List<IExpression>();
+            IDictionary<string, IExpression> namedexprs = new Dictionary<string, IExpression>();
 
             while (!this.TryNextToken(TokenType.Delimiter, ")"))
             {
                 if (exprs.Count > 0)
                     this.NextToken(TokenType.Delimiter, ",");
 
-                exprs.Add(this.ParseExpression());
+                var argexpr = this.ParseExpression();
+
+                if (argexpr is NamedArgumentExpression)
+                {
+                    var nargexpr = (NamedArgumentExpression)argexpr;
+
+                    namedexprs[nargexpr.Name] = nargexpr.Expression;
+                }
+                else
+                    exprs.Add(argexpr);
             }
 
-            expr = new CallExpression(expr, exprs, null);
+            expr = new CallExpression(expr, exprs, namedexprs);
 
             return expr;
         }
