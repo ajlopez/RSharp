@@ -65,6 +65,10 @@
             Assert.IsNotNull(context.GetValue("nchar"));
             Assert.IsInstanceOfType(context.GetValue("nchar"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("nchar"), typeof(NChar));
+
+            Assert.IsNotNull(context.GetValue("rep"));
+            Assert.IsInstanceOfType(context.GetValue("rep"), typeof(IFunction));
+            Assert.IsInstanceOfType(context.GetValue("rep"), typeof(Rep));
         }
     }
 }
