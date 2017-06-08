@@ -51,6 +51,7 @@
     <Compile Include="Expressions\FunctionExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
+    <Compile Include="Functions\Min.cs" />
     <Compile Include="Functions\Max.cs" />
     <Compile Include="Functions\NChar.cs" />
     <Compile Include="Functions\DefinedFunction.cs" />
