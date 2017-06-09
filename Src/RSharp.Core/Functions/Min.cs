@@ -9,21 +9,33 @@
     {
         public object Apply(Context context, IList<object> values, IDictionary<string, object> namedvalues)
         {
-            int? result = null;
+            int? intresult = null;
+            double? realresult = null;
 
             foreach (var value in values)
             {
                 if (value is int)
-                    if (result.HasValue)
+                    if (intresult.HasValue)
                     {
-                        if (result > (int)value)
-                            result = (int)value;
+                        if (intresult > (int)value)
+                            intresult = (int)value;
                     }
                     else
-                        result = (int)value;
+                        intresult = (int)value;
+                else if (value is double)
+                    if (realresult.HasValue)
+                    {
+                        if (realresult > (double)value)
+                            realresult = (double)value;
+                    }
+                    else
+                        realresult = (double)value;
             }
 
-            return result;
+            if (realresult.HasValue)
+                return realresult;
+
+            return intresult;
         }
     }
 }

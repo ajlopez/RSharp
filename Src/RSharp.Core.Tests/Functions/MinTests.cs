@@ -29,5 +29,27 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result);
         }
+
+        [TestMethod]
+        public void MinOfTwoReals()
+        {
+            IFunction fn = new Min();
+
+            var result = fn.Apply(null, new object[] { 1.5, 42.5 }, null);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1.5, result);
+        }
+
+        [TestMethod]
+        public void MinOfThreeReals()
+        {
+            IFunction fn = new Min();
+
+            var result = fn.Apply(null, new object[] { 42.0, 3.14159, 2.5 }, null);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2.5, result);
+        }
     }
 }
