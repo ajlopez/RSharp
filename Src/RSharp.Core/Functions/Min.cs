@@ -32,6 +32,12 @@
                         realresult = (double)value;
             }
 
+            if (realresult.HasValue && intresult.HasValue)
+                if (realresult < intresult)
+                    return realresult;
+                else
+                    return intresult;
+
             if (realresult.HasValue)
                 return realresult;
 

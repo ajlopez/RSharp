@@ -42,11 +42,22 @@
         }
 
         [TestMethod]
-        public void MinOfThreeReals()
+        public void MinOfOneRealOneInteger()
         {
             IFunction fn = new Min();
 
-            var result = fn.Apply(null, new object[] { 42.0, 3.14159, 2.5 }, null);
+            var result = fn.Apply(null, new object[] { 2, 42.5 }, null);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
+        public void MinOfOneIntegerTwoReals()
+        {
+            IFunction fn = new Min();
+
+            var result = fn.Apply(null, new object[] { 42, 3.14159, 2.5 }, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2.5, result);
