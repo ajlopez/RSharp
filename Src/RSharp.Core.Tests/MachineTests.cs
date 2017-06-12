@@ -69,6 +69,10 @@
             Assert.IsNotNull(context.GetValue("rep"));
             Assert.IsInstanceOfType(context.GetValue("rep"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("rep"), typeof(Rep));
+
+            Assert.IsNotNull(context.GetValue("min"));
+            Assert.IsInstanceOfType(context.GetValue("min"), typeof(IFunction));
+            Assert.IsInstanceOfType(context.GetValue("min"), typeof(Min));
         }
     }
 }

@@ -21,6 +21,7 @@
             this.context.SetValue("paste", new Paste());
             this.context.SetValue("nchar", new NChar());
             this.context.SetValue("rep", new Rep());
+            this.context.SetValue("min", new Min());
         }
 
         public Context Context { get { return this.context; } }
