@@ -22,6 +22,7 @@
             this.context.SetValue("nchar", new NChar());
             this.context.SetValue("rep", new Rep());
             this.context.SetValue("min", new Min());
+            this.context.SetValue("max", new Max());
         }
 
         public Context Context { get { return this.context; } }

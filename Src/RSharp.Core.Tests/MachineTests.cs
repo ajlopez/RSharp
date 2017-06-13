@@ -73,6 +73,10 @@
             Assert.IsNotNull(context.GetValue("min"));
             Assert.IsInstanceOfType(context.GetValue("min"), typeof(IFunction));
             Assert.IsInstanceOfType(context.GetValue("min"), typeof(Min));
+
+            Assert.IsNotNull(context.GetValue("max"));
+            Assert.IsInstanceOfType(context.GetValue("max"), typeof(IFunction));
+            Assert.IsInstanceOfType(context.GetValue("max"), typeof(Max));
         }
     }
 }
