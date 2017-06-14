@@ -84,6 +84,15 @@
         }
 
         [TestMethod]
+        public void EvaluateMinWithIntegers()
+        {
+            var result = Evaluate("min(1,2,42)");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
         public void EvaluatePasteUsingSep()
         {
             var result = Evaluate("paste(\"foo\", \"bar\", sep=\"\")");
