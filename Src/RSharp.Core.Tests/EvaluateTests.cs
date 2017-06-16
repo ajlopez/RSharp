@@ -102,6 +102,15 @@
         }
 
         [TestMethod]
+        public void EvaluateMaxWithIntegers()
+        {
+            var result = Evaluate("max(1,2,42)");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(42, result);
+        }
+
+        [TestMethod]
         public void EvaluatePasteUsingSep()
         {
             var result = Evaluate("paste(\"foo\", \"bar\", sep=\"\")");
