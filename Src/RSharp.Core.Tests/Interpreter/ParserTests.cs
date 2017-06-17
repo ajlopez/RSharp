@@ -27,6 +27,18 @@
         }
 
         [TestMethod]
+        public void ParseRealExpression()
+        {
+            var parser = new Parser("3.14159");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, 3.14159);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseTwoIntegerExpressions()
         {
             var parser = new Parser("123 456");
