@@ -64,7 +64,7 @@
                 if (token.Value == ":")
                     expr = new BinaryExpression(new SequenceOperation(), expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "+")
-                    expr = new BinaryExpression(new AddOperation(), expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryExpression(AddOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "-")
                     expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "*")

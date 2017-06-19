@@ -101,7 +101,7 @@
         [TestMethod]
         public void AddVectorToVector()
         {
-            AddOperation op = new AddOperation();
+            AddOperation op = AddOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
             Vector v2 = new Vector(new object[] { 4, 5 });
 

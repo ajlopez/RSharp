@@ -8,6 +8,16 @@
 
     public class AddOperation : IBinaryOperation
     {
+        private static AddOperation instance = new AddOperation();
+
+        public static AddOperation Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+    
         public object Apply(object left, object right)
         {
             if (left is int)
