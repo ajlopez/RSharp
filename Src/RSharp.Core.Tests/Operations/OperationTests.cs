@@ -14,7 +14,7 @@
         [TestMethod]
         public void AddNumbers()
         {
-            AddOperation op = new AddOperation();
+            AddOperation op = AddOperation.Instance;
 
             Assert.AreEqual(1 + 2, op.Apply(1, 2));
             Assert.AreEqual(1.2 + 3.4, op.Apply(1.2, 3.4));
@@ -25,7 +25,8 @@
         [TestMethod]
         public void AddVectorToInteger()
         {
-            AddOperation op = new AddOperation();
+            AddOperation op = AddOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(v, 1);
@@ -44,7 +45,8 @@
         [TestMethod]
         public void AddIntegerToVector()
         {
-            AddOperation op = new AddOperation();
+            AddOperation op = AddOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(1, v);
@@ -63,7 +65,8 @@
         [TestMethod]
         public void AddVectorToReal()
         {
-            AddOperation op = new AddOperation();
+            AddOperation op = AddOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(v, 1.5);
@@ -82,7 +85,8 @@
         [TestMethod]
         public void AddRealToVector()
         {
-            AddOperation op = new AddOperation();
+            AddOperation op = AddOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(1.5, v);
@@ -102,6 +106,7 @@
         public void AddVectorToVector()
         {
             AddOperation op = AddOperation.Instance;
+            
             Vector v = new Vector(new object[] { 1, 2, 3 });
             Vector v2 = new Vector(new object[] { 4, 5 });
 
@@ -121,7 +126,7 @@
         [TestMethod]
         public void SubtractNumbers()
         {
-            SubtractOperation op = new SubtractOperation();
+            SubtractOperation op = SubtractOperation.Instance;
 
             Assert.AreEqual(1 - 2, op.Apply(1, 2));
             Assert.AreEqual(1.2 - 3.4, op.Apply(1.2, 3.4));
@@ -132,7 +137,7 @@
         [TestMethod]
         public void SubtractIntegerFromVector()
         {
-            SubtractOperation op = new SubtractOperation();
+            SubtractOperation op = SubtractOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(v, 1);
@@ -151,7 +156,7 @@
         [TestMethod]
         public void SubtractVectorFromInteger()
         {
-            SubtractOperation op = new SubtractOperation();
+            SubtractOperation op = SubtractOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(1, v);
@@ -170,7 +175,7 @@
         [TestMethod]
         public void SubtractVectorFromReal()
         {
-            SubtractOperation op = new SubtractOperation();
+            SubtractOperation op = SubtractOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(1.5, v);
@@ -189,7 +194,7 @@
         [TestMethod]
         public void MultiplyNumbers()
         {
-            MultiplyOperation op = new MultiplyOperation();
+            MultiplyOperation op = MultiplyOperation.Instance;
 
             Assert.AreEqual(3 * 2, op.Apply(3, 2));
             Assert.AreEqual(1.2 * 3.4, op.Apply(1.2, 3.4));
@@ -200,7 +205,7 @@
         [TestMethod]
         public void MultiplyVectorToInteger()
         {
-            MultiplyOperation op = new MultiplyOperation();
+            MultiplyOperation op = MultiplyOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(v, 2);
@@ -219,7 +224,7 @@
         [TestMethod]
         public void MultiplyIntegerToVector()
         {
-            MultiplyOperation op = new MultiplyOperation();
+            MultiplyOperation op = MultiplyOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(3, v);
@@ -238,7 +243,7 @@
         [TestMethod]
         public void MultiplyVectorByReal()
         {
-            MultiplyOperation op = new MultiplyOperation();
+            MultiplyOperation op = MultiplyOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(v, 1.5);
@@ -257,7 +262,7 @@
         [TestMethod]
         public void MultiplyRealByVector()
         {
-            MultiplyOperation op = new MultiplyOperation();
+            MultiplyOperation op = MultiplyOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(1.5, v);
@@ -276,7 +281,7 @@
         [TestMethod]
         public void MultiplyVectorToVector()
         {
-            MultiplyOperation op = new MultiplyOperation();
+            MultiplyOperation op = MultiplyOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
             Vector v2 = new Vector(new object[] { 4, 5 });
 
@@ -296,7 +301,7 @@
         [TestMethod]
         public void DivideNumbers()
         {
-            DivideOperation op = new DivideOperation();
+            DivideOperation op = DivideOperation.Instance;
 
             Assert.AreEqual(1 / 2.0, op.Apply(1, 2));
             Assert.AreEqual(2, op.Apply(4, 2));
@@ -308,7 +313,8 @@
         [TestMethod]
         public void DivideVectorByInteger()
         {
-            DivideOperation op = new DivideOperation();
+            DivideOperation op = DivideOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(v, 2);
@@ -327,7 +333,8 @@
         [TestMethod]
         public void DivideIntegerToVector()
         {
-            DivideOperation op = new DivideOperation();
+            DivideOperation op = DivideOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(1, v);
@@ -346,7 +353,8 @@
         [TestMethod]
         public void DivideVectorToReal()
         {
-            DivideOperation op = new DivideOperation();
+            DivideOperation op = DivideOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(v, 1.5);
@@ -365,7 +373,8 @@
         [TestMethod]
         public void DivideRealToVector()
         {
-            DivideOperation op = new DivideOperation();
+            DivideOperation op = DivideOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
 
             var result = op.Apply(1.5, v);
@@ -384,7 +393,8 @@
         [TestMethod]
         public void DivideVectorToVector()
         {
-            DivideOperation op = new DivideOperation();
+            DivideOperation op = DivideOperation.Instance;
+
             Vector v = new Vector(new object[] { 1, 2, 3 });
             Vector v2 = new Vector(new object[] { 4, 5 });
 
@@ -404,7 +414,7 @@
         [TestMethod]
         public void SequenceCreateVector()
         {
-            SequenceOperation op = new SequenceOperation();
+            SequenceOperation op = SequenceOperation.Instance;
 
             var result = op.Apply(1, 20);
 

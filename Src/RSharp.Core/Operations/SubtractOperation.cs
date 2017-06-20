@@ -8,6 +8,16 @@
 
     public class SubtractOperation : IBinaryOperation
     {
+        private static SubtractOperation instance = new SubtractOperation();
+
+        public static SubtractOperation Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public object Apply(object left, object right)
         {
             if (left is int)

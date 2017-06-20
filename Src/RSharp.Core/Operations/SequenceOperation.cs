@@ -8,6 +8,16 @@
 
     public class SequenceOperation : IBinaryOperation
     {
+        private static SequenceOperation instance = new SequenceOperation();
+
+        public static SequenceOperation Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public object Apply(object left, object right)
         {
             int from = (int)left;

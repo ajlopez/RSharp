@@ -8,6 +8,16 @@
 
     public class DivideOperation : IBinaryOperation
     {
+        private static DivideOperation instance = new DivideOperation();
+
+        public static DivideOperation Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public object Apply(object left, object right)
         {
             if (left is int)

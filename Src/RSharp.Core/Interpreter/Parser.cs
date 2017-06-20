@@ -62,15 +62,15 @@
             for (token = this.NextToken(); token != null && token.Type == TokenType.Operator && this.binlevels[level].Contains(token.Value); token = this.NextToken())
             {
                 if (token.Value == ":")
-                    expr = new BinaryExpression(new SequenceOperation(), expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryExpression(SequenceOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "+")
                     expr = new BinaryExpression(AddOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "-")
-                    expr = new BinaryExpression(new SubtractOperation(), expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryExpression(SubtractOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "*")
-                    expr = new BinaryExpression(new MultiplyOperation(), expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryExpression(MultiplyOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "/")
-                    expr = new BinaryExpression(new DivideOperation(), expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryExpression(DivideOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else
                     throw new ParserException(string.Format("Unknow binary operator {0}", token.Value));
             }

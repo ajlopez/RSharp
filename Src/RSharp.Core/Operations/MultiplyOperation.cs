@@ -8,6 +8,16 @@
 
     public class MultiplyOperation : IBinaryOperation
     {
+        private static MultiplyOperation instance = new MultiplyOperation();
+
+        public static MultiplyOperation Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public object Apply(object left, object right)
         {
             if (left is int)
