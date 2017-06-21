@@ -412,6 +412,15 @@
         }
 
         [TestMethod]
+        public void ModulusIntegers()
+        {
+            ModulusOperation op = ModulusOperation.Instance;
+
+            Assert.AreEqual(1, op.Apply(3, 2));
+            Assert.AreEqual(0, op.Apply(4, 2));
+        }
+
+        [TestMethod]
         public void SequenceCreateVector()
         {
             SequenceOperation op = SequenceOperation.Instance;
