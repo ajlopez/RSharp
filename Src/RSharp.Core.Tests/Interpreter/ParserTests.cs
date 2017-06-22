@@ -127,6 +127,30 @@
         }
 
         [TestMethod]
+        public void ParseModulusExpression()
+        {
+            var parser = new Parser("1%%2");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(BinaryExpression));
+
+            var addexpr = (BinaryExpression)expr;
+
+            Assert.IsNotNull(addexpr.LeftExpression);
+            Assert.IsNotNull(addexpr.RightExpression);
+            Assert.IsNotNull(addexpr.BinaryOperation);
+            Assert.IsInstanceOfType(addexpr.BinaryOperation, typeof(ModulusOperation));
+            Assert.IsInstanceOfType(addexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)addexpr.LeftExpression).Value);
+            Assert.IsInstanceOfType(addexpr.RightExpression, typeof(ConstantExpression));
+            Assert.AreEqual(2, ((ConstantExpression)addexpr.RightExpression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseSubtractExpression()
         {
             var parser = new Parser("1-2");

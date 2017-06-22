@@ -14,7 +14,7 @@
     {
         private Lexer lexer;
         private Stack<Token> tokens = new Stack<Token>();
-        private string[][] binlevels = new string[][] { new string[] { ":" }, new string[] { "+", "-" }, new string[] { "*", "/" } };
+        private string[][] binlevels = new string[][] { new string[] { ":" }, new string[] { "+", "-" }, new string[] { "*", "/", "%%" } };
 
         public Parser(string text)
             : this(new StringReader(text))
@@ -71,6 +71,8 @@
                     expr = new BinaryExpression(MultiplyOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else if (token.Value == "/")
                     expr = new BinaryExpression(DivideOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
+                else if (token.Value == "%%")
+                    expr = new BinaryExpression(ModulusOperation.Instance, expr, this.ParseBinaryExpression(level + 1));
                 else
                     throw new ParserException(string.Format("Unknow binary operator {0}", token.Value));
             }
