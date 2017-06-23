@@ -421,6 +421,15 @@
         }
 
         [TestMethod]
+        public void EqualIntegers()
+        {
+            EqualOperation op = EqualOperation.Instance;
+
+            Assert.AreEqual(false, op.Apply(3, 2));
+            Assert.AreEqual(true, op.Apply(2, 2));
+        }
+
+        [TestMethod]
         public void SequenceCreateVector()
         {
             SequenceOperation op = SequenceOperation.Instance;
