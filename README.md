@@ -12,3 +12,5 @@ R-like programming language interpreter, written in C#, WIP
 - [Guerrilla Guide to Machine Learning with R](http://www.kdnuggets.com/2017/05/guerrilla-guide-machine-learning-r.html)
 - [Installing R and RStudio](http://socserv.mcmaster.ca/jfox/Courses/R/ICPSR/R-install-instructions.html)
 - [Parallel Computing Exercises: Foreach and DoParallel (Part-2)](https://www.r-bloggers.com/parallel-computing-exercises-foreach-and-doparallel-part-2/)
+- [This R Data Import Tutorial Is Everything You Need](https://www.datacamp.com/community/tutorials/r-data-import-tutorial#gs.2rS913E)
+

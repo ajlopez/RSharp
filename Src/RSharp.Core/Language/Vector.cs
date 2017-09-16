@@ -13,14 +13,14 @@
         private static MultiplyOperation multop = new MultiplyOperation();
         private static DivideOperation divop = new DivideOperation();
 
-        private IList<object> elements;
+        private object[] elements;
 
         public Vector(IEnumerable<object> elements)
         {
-            this.elements = new List<object>(elements);
+            this.elements = new List<object>(elements).ToArray();
         }
 
-        public int Length { get { return this.elements.Count; } }
+        public int Length { get { return this.elements.Length; } }
 
         public object this[int index] 
         {
@@ -105,7 +105,7 @@
         {
             IList<object> values = new List<object>();
 
-            int l1 = this.elements.Count;
+            int l1 = this.elements.Length;
             int l2 = value.Length;
             int l = Math.Max(l1, l2);
 
