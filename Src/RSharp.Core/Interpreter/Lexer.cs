@@ -138,6 +138,12 @@
 
             this.PushChar(ich);
 
+            if (value == "FALSE" || value == "F")
+                return new Token(TokenType.Logical, "FALSE");
+
+            if (value == "TRUE" || value == "T")
+                return new Token(TokenType.Logical, "TRUE");
+
             return new Token(TokenType.Name, value);
         }
 

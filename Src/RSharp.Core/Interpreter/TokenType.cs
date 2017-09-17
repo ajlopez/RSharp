@@ -8,6 +8,7 @@
     public enum TokenType
     {
         Name,
+        Logical,
         Integer,
         Real,
         String,

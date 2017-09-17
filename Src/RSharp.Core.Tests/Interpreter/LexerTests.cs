@@ -59,6 +59,54 @@
         }
 
         [TestMethod]
+        public void GetLogicalFalse()
+        {
+            Lexer lexer = new Lexer("FALSE");
+
+            var token = lexer.NextToken();
+
+            IsToken(token, TokenType.Logical, "FALSE");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetLogicalFalseShortName()
+        {
+            Lexer lexer = new Lexer("F");
+
+            var token = lexer.NextToken();
+
+            IsToken(token, TokenType.Logical, "FALSE");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetLogicalTrue()
+        {
+            Lexer lexer = new Lexer("TRUE");
+
+            var token = lexer.NextToken();
+
+            IsToken(token, TokenType.Logical, "TRUE");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetLogicalTrueShortName()
+        {
+            Lexer lexer = new Lexer("T");
+
+            var token = lexer.NextToken();
+
+            IsToken(token, TokenType.Logical, "TRUE");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetInteger()
         {
             Lexer lexer = new Lexer("42");
