@@ -39,6 +39,54 @@
         }
 
         [TestMethod]
+        public void ParseLogicalTrueAsConstantExpression()
+        {
+            var parser = new Parser("TRUE");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, true);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseLogicalFalseAsConstantExpression()
+        {
+            var parser = new Parser("FALSE");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, false);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseLogicalTrueShortNameAsConstantExpression()
+        {
+            var parser = new Parser("T");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, true);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseLogicalFalseShortNameAsConstantExpression()
+        {
+            var parser = new Parser("F");
+
+            var expr = parser.ParseExpression();
+
+            IsConstantExpression(expr, false);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseTwoIntegerExpressions()
         {
             var parser = new Parser("123 456");
