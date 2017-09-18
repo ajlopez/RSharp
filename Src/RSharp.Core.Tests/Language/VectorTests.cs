@@ -109,6 +109,23 @@
         }
 
         [TestMethod]
+        public void AddVectorWithInvalidShorterLength()
+        {
+            Vector v = new Vector(new object[] { 1, 2, 3, 4 });
+            Vector v2 = new Vector(new object[] { 2, 4, 3 });
+
+            try
+            {
+                var result = v.Add(v2);
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("longer object length is not a multiple of shorter object length", ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void AddVectorWithLongerLength()
         {
             Vector v = new Vector(new object[] { 1, 2 });

@@ -107,6 +107,10 @@
 
             int l1 = this.elements.Length;
             int l2 = value.Length;
+
+            if (l1 < l2 && l2 % l1 != 0 || l1 > l2 && l1 % l2 != 0)
+                throw new InvalidOperationException("longer object length is not a multiple of shorter object length");
+
             int l = Math.Max(l1, l2);
 
             for (int k = 0; k < l; k++)

@@ -108,7 +108,7 @@
             AddOperation op = AddOperation.Instance;
             
             Vector v = new Vector(new object[] { 1, 2, 3 });
-            Vector v2 = new Vector(new object[] { 4, 5 });
+            Vector v2 = new Vector(new object[] { 4, 5, 6 });
 
             var result = op.Apply(v, v2);
 
@@ -120,7 +120,7 @@
             Assert.AreEqual(3, vector.Length);
             Assert.AreEqual(5, vector[0]);
             Assert.AreEqual(7, vector[1]);
-            Assert.AreEqual(7, vector[2]);
+            Assert.AreEqual(9, vector[2]);
         }
 
         [TestMethod]
@@ -283,7 +283,7 @@
         {
             MultiplyOperation op = MultiplyOperation.Instance;
             Vector v = new Vector(new object[] { 1, 2, 3 });
-            Vector v2 = new Vector(new object[] { 4, 5 });
+            Vector v2 = new Vector(new object[] { 4, 5, 6 });
 
             var result = op.Apply(v, v2);
 
@@ -295,7 +295,7 @@
             Assert.AreEqual(3, vector.Length);
             Assert.AreEqual(4, vector[0]);
             Assert.AreEqual(10, vector[1]);
-            Assert.AreEqual(12, vector[2]);
+            Assert.AreEqual(18, vector[2]);
         }
 
         [TestMethod]
@@ -396,7 +396,7 @@
             DivideOperation op = DivideOperation.Instance;
 
             Vector v = new Vector(new object[] { 1, 2, 3 });
-            Vector v2 = new Vector(new object[] { 4, 5 });
+            Vector v2 = new Vector(new object[] { 4, 5, 6 });
 
             var result = op.Apply(v, v2);
 
@@ -408,7 +408,7 @@
             Assert.AreEqual(3, vector.Length);
             Assert.AreEqual(1 / 4.0, vector[0]);
             Assert.AreEqual(2 / 5.0, vector[1]);
-            Assert.AreEqual(3 / 4.0, vector[2]);
+            Assert.AreEqual(3 / 6.0, vector[2]);
         }
 
         [TestMethod]
