@@ -36,6 +36,16 @@
             if (ch == '"')
                 return this.NextString();
 
+            if (ch == '\n')
+                return new Token(TokenType.EndOfLine, "\n");
+
+            if (ch == '\r')
+                if (this.TryNextChar('\n'))
+                    return new Token(TokenType.EndOfLine, "\r\n");
+                else
+                    return new Token(TokenType.EndOfLine, "\r");
+
+
             if (char.IsDigit(ch))
                 return this.NextInteger(ch);
 
@@ -56,15 +66,6 @@
                 if (operators.Contains(sch))
                     return new Token(TokenType.Operator, sch);
             }
-
-            if (ch == '\n')
-                return new Token(TokenType.EndOfLine, "\n");
-
-            if (ch == '\r')
-                if (this.TryNextChar('\n'))
-                    return new Token(TokenType.EndOfLine, "\r\n");
-                else
-                    return new Token(TokenType.EndOfLine, "\r");
 
             throw new LexerException(string.Format("Unexpected '{0}'", ch));
         }
