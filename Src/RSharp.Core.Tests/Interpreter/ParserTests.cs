@@ -515,6 +515,26 @@
         }
 
         [TestMethod]
+        public void ParseDotExpression()
+        {
+            var parser = new Parser("foo.bar");
+
+            var expr = parser.ParseExpression();
+
+            Assert.IsNotNull(expr);
+            Assert.IsInstanceOfType(expr, typeof(DotExpression));
+
+            var dotexpr = (DotExpression)expr;
+
+            Assert.IsNotNull(dotexpr.Expression);
+            Assert.IsInstanceOfType(dotexpr.Expression, typeof(NameExpression));
+            Assert.AreEqual("foo", ((NameExpression)dotexpr.Expression).Name);
+
+            Assert.IsNotNull(dotexpr.Property);
+            Assert.AreEqual("bar", dotexpr.Property);
+        }
+
+        [TestMethod]
         public void ParseNamedArgumentExpression()
         {
             var parser = new Parser("foo=42");
