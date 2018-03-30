@@ -113,6 +113,13 @@
                     continue;
                 }
 
+                if (this.TryNextToken(TokenType.Delimiter, "."))
+                {
+                    string name = this.ParseName();
+                    expr = new DotExpression(expr, name);
+                    continue;
+                }
+
                 break;
             }
 
