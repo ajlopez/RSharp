@@ -1,12 +1,7 @@
 ﻿namespace RSharp.Core.Tests.Functions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RSharp.Core.Functions;
-    using RSharp.Core.Language;
 
     [TestClass]
     public class ReturnTests

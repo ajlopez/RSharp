@@ -1,6 +1,5 @@
 ﻿namespace RSharp.Core.Tests.Functions
 {
-    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RSharp.Core.Functions;
     using RSharp.Core.Language;
