@@ -1,9 +1,5 @@
 ﻿namespace RSharp.Core.Tests.Operations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RSharp.Core.Language;
     using RSharp.Core.Operations;
