@@ -10,3 +10,5 @@ packages
 *.nupkg
 output
 TestResults
+
+Src/.vs

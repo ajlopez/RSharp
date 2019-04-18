@@ -17,7 +17,17 @@
 
         public Vector(IEnumerable<object> elements)
         {
-            this.elements = new List<object>(elements).ToArray();
+            List<object> list = new List<object>();
+
+            foreach (object element in elements)
+            {
+                if (element is Vector)
+                    list.AddRange(((Vector)element).elements);
+                else
+                    list.Add(element);
+            }
+        
+            this.elements = list.ToArray();
         }
 
         public int Length { get { return this.elements.Length; } }

@@ -19,6 +19,22 @@
         }
 
         [TestMethod]
+        public void CreateVectorWithVectorsAndIntegers()
+        {
+            Vector v0 = new Vector(new object[] { 1, 2, 3 });
+            Vector v = new Vector(new object[] { v0, 0, v0 });
+
+            Assert.AreEqual(7, v.Length);
+            Assert.AreEqual(1, v[0]);
+            Assert.AreEqual(2, v[1]);
+            Assert.AreEqual(3, v[2]);
+            Assert.AreEqual(0, v[3]);
+            Assert.AreEqual(1, v[4]);
+            Assert.AreEqual(2, v[5]);
+            Assert.AreEqual(3, v[6]);
+        }
+
+        [TestMethod]
         public void ToLines()
         {
             Vector v = new Vector(new object[] { 1, 2, 3 });
